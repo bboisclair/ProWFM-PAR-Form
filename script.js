@@ -101,9 +101,9 @@ function submitForm(event) {
     var content = `
     <link rel="stylesheet" href="style.css">
     <div id="header">
-      <img src="images/defect.png" class="header-icon">
+      <img src="defect.png" class="header-icon">
       <h1>Pre-PAR Generator for Pro WFM</h1>
-      <img src="images/defect.png" class="header-icon">
+      <img src="defect.png" class="header-icon">
     </div>
     <script>
     function closeCurrentTab() {
@@ -155,7 +155,7 @@ function submitForm(event) {
         <p><strong>Business Impact:</strong><br>==============
         <br>
         ${businessImpact}
-        <h2>Workaround</h2>
+        <p><strong>Workaround</strong><br>=================
         <p><strong>Is a workaround available?:</strong> ${workaroundOutput}
         <br>
         ${workaroundDetails.replace(/\|\|\|/g, '<br>')}

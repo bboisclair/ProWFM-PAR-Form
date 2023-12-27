@@ -147,10 +147,6 @@ function submitForm(event) {
         <strong>Tenant URL:</strong> ${tenantURL}
         <br>
         <strong>Tenant Stack:</strong> ${tenantStack}
-        <p><strong>Steps to Reproduce:</strong><br>=================
-        <br>
-        <strong>Reproducibility:</strong> ${reproducibility}</p>
-        ${reproductionSteps.replace(/\|\|\|/g, '<br>')}
         <br>
         <p><strong>Business Impact:</strong><br>==============
         <br>
@@ -159,6 +155,9 @@ function submitForm(event) {
         <p><strong>Is a workaround available?:</strong> ${workaroundOutput}
         <br>
         ${workaroundDetails.replace(/\|\|\|/g, '<br>')}
+        <h2>Steps to Reproduce:</h2>
+        <p><strong>Reproducibility:</strong> ${reproducibility}</p>
+        ${reproductionSteps.replace(/\|\|\|/g, '<br>')}
 
         <div class="buttonSection" id="buttonSection">
           <button type="button" class = "button" onclick="closeCurrentTab(event)">Edit Information</button>
@@ -188,4 +187,3 @@ function hideMobileTextbox() {
   var additionalTextboxContainer = document.getElementById('mobileTextboxContainer');
   additionalTextboxContainer.style.display = 'none';
 }
-

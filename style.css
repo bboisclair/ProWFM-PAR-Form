@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: rgb(220, 220, 220); /* Light grey background */
+  }
+  #myForm {
+    background-color: #fff; /* White background for the form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1500px;
+  }
+  #formContainer {
+    margin-top: 20px; /* Add some space between the header and the form */
+  }
+  #outputForm {
+    background-color: #fff; /* White background for the form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1500px;
+  }
+  #outputContainer {
+    margin-top: 20px; /* Add some space between the header and the form */
+  }
+  .formSection {
+    border: 2px solid #000000; /* Border to separate sections */
+    padding: 10px; /* Padding for better appearance */
+    margin-bottom: 20px; /* Space between sections */
+  }
+  .buttonSection{
+    border: 0px solid #000000; /* Border to separate sections */
+    padding: 10px; /* Padding for better appearance */
+    margin-bottom: 20px; /* Space between sections */
+  }
+  label[type='text']{
+    display: block;
+    margin-bottom: 8px;
+  }
+  input[type='text'] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #0176B2; /* UKG Blue */
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 10px auto; /* Center the button */
+    padding: 10px; /* Adjust padding for larger size */
+    font-size: 16px; /* Adjust font size for larger text */
+    width: 300px; /* Adjust the width as needed */
+  }
+  #output {
+    margin-top: 20px;
+  }
+  #header {
+    text-align: center; /* Center content horizontally */
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+  }
+  #header img {
+    margin: 0 10px; /* Add some margin between the icons and the text */
+    width: 50px;
+  }
+  #notice{
+    font-size: 15px
+  }
+  select, textarea {
+    width: 100%; /* Make the dropdown fill the container */
+    max-width: 100%; /* Set the maximum width of the dropdown to 100% */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+  }
+  .visually-hidden { 
+    border: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute !important;
+    height: 1px; 
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+    clip: rect(1px, 1px, 1px, 1px); /*maybe deprecated but we need to support legacy browsers */
+    clip-path: inset(50%); /*modern browsers, clip-path works inwards from each corner*/
+    white-space: nowrap; /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+}
+.required-marker {
+  color: red;
+  margin-left: 4px; /* Adjust the margin as needed */
+}

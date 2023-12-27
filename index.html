@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+
+#     # #    #  #####     ### #    #  #####          
+#     # #   #  #     #     #  #    # #    #
+#     # #  #   #           #  ##   # #         
+#     # ###    #  ####     #  # #  # #          
+#     # #  #   #     #     #  #  # # #      
+#     # #   #  #     #     #  #   ## #    # ### 
+ #####  #    #  #####     ### #    #  ####  ### 
+
+Created by: Brandon Boisclair - 2023
+
+CHANGE LOG:
+Version 1.0 - Initial Release
+-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-PAR Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <div id="header">
+    <img src="images/defect.png" class="header-icon" title="Defect Icon">
+    <h1>Pre-PAR Generator for Pro WFM</h1>
+    <img src="images/defect.png" class="header-icon" title="Defect Icon">
+  </div>
+  <div id="notice">
+    <p>
+      In order for the JIRA to be approved, it must be accurate and complete. Please fill in the form below to generate
+      content for your PS project defect which will be reviewed by an approver.
+    </p>
+
+    <ol>
+      <li>Accurately complete all required information in the form, then click Generate.</li>
+      <li>A new browser will be opened containing your formatted content for JIRA fields.</li>
+      <li>Copy and paste the text from the new window into the appropriate fields in either the Salesforce Case JIRA
+        form, or in a new JIRA defect.</li>
+      <li>Create a Salesforce subcase for PAR review and dispatch to the appropriate Segment queue. Use a title of "PAR
+        Review: Issue PS-#####"</li>
+      <li>Anything marked with a red<span class="required-marker">*</span> is a required field and must be filled out before submission.</li>
+    </ol>
+  </div>
+  <div id="formContainer">
+    <form id="myForm">
+      <h2>Section I: Issue Summary</h2>
+      <div class="formSection" id="issueSummary">
+        <label for="summary"><strong>Summary:</strong><span class="required-marker">*</span></label>
+        <input type="text" id="summary" name="summary" required>
+      </div>
+      <h2>Section II: Issue Description</h2>
+      <div class="formSection" id="issueDescription">
+        <h3>A. Issue Details</h3>
+        <label>Has this ever worked? If YES, what change or event seemed to be what started this problem?<span class="required-marker">*</span></label>
+        <select id="prevWorked" name="prevWorked">
+          <option value="">Select a value</option>
+          <option
+            value="Yes, but while there is reasonable proof or a creditable claim that this previously worked, there are no clues reported or discovered to more clearly define what started the issue, so Global Support is reporting the origin as 'uncertain'">
+            Yes, but while there is reasonable proof or a creditable claim that this previously worked, there are no
+            clues reported or discovered to more clearly define what started the issue, so Global Support is reporting
+            the origin as 'uncertain'</option>
+          <option
+            value="Yes, this was working, and Global Support has proven that this is a regression introduced by a regular release or update. JIRA's 'Regression Yes/No' and 'Regression Introduced' fields will be set to reflect Global Support's findings">
+            Yes, this was working, and Global Support has proven that this is a regression introduced by a regular
+            release or update. JIRA's 'Regression Yes/No' and 'Regression Introduced' fields will be set to reflect
+            Global Support's findings</option>
+          <option
+            value="Yes, this was working, and Global Support has proven that this is a regression introduced by an Express Upgrade or a Patch">
+            Yes, this was working, and Global Support has proven that this is a regression introduced by an Express
+            Upgrade or a Patch</option>
+          <option value="Yes, this was working, but the problem began after changes to configuration.">Yes, this was
+            working, but the problem began after changes to configuration.</option>
+          <option value="Yes, this was working, but the problem started happening after a change to an integration">Yes,
+            this was working, but the problem started happening after a change to an integration</option>
+          <option
+            value="Yes, this was working as expected, but we have determined with some certainty that it started after some OTHER event or change">
+            Yes, this was working as expected, but we have determined with some certainty that it started after some
+            OTHER event or change</option>
+          <option
+            value="No, this has not worked since originally set up and configured by UKG Professional Services, Partner, or by the customer">
+            No, this has not worked since originally set up and configured by UKG Professional Services, Partner, or by
+            the customer</option>
+        </select>
+        <br>
+        <br>
+        <label><strong>Problem:</strong><span class="required-marker">*</span></label>
+        <input type="text" id="problem" name="problem" required>
+        <br>
+        <label><strong>Expected Result:</strong><span class="required-marker">*</span></label>
+        <input type="text" id="expectedResult" name="expectedResult" required>
+        <br>
+        <label><strong>Additional Information:</strong></label>
+        <textarea id="additionalInfo" name="additionalInfo" rows="15" cols=75"></textarea>
+        <br>
+        <br>
+        <h3>B. Issue Scope</h3>
+        <label for="tenantURL"><strong>Tenant URL:</strong><span class="required-marker">*</span></label>
+        <input type="text" id="tenantURL" name="tenantURL" required>
+        <br>
+        <label><strong>Tenant Stack:</strong><span class="required-marker">*</span></label>
+        <select id="tenantStack" name="tenantStack">
+          <option value="" disabled selected>Select a value</option>
+          <option value="Australia NPR/PRD">
+            Australia NPR/PRD</option>
+          <option value="Canada NPR/PRD">
+            Canada NPR/PRD</option>
+          <option value="CFN">
+            CFN - Cross-functional</option>
+          <option value="Europe EU NPR/PRD">
+            Europe EU NPR/PRD</option>
+          <option value="NAM NPR">
+            NAM NPR</option>
+          <option value="NAM PRD">
+            NAM PRD</option>
+          <option value="Other (please find details in problem description)">
+            Other (please find details in problem description)</option>
+        </select>
+        <br>
+        <br>
+        <label><strong>Is this issue for the mobile app?:</strong><span class="required-marker">*</span></label>
+        <br>
+        <label>Yes<input type="radio" id="mobileYes" name="mobile" value="Yes" onclick="showMobileTextbox()">
+        </label>
+
+        <label>No<input type="radio" id="mobileNo" name="mobile" value="No" onclick="hideMobileTextbox()">
+        </label>
+        <div id="mobileTextboxContainer" style="display: none;">
+          <p>
+            Provide the following details for your Mobile App issue:</p>
+          <p>
+            Mobile Device - Manufacturer, Model, and OS version:<input type="text" id="mobileDevice" name="mobileDevice"
+              required> <br>
+            Mobile App - Name, Version:<input type="text" id="mobileApp" name="mobileApp" required><br>
+            <br>
+            Important: Be sure to include mobile trace logs created by a user who experiences the issue. See KB:
+            000079358 "How to Collect Logs from UKG Pro Workforce Management (formerly known as UKG Dimensions)
+            Apps"
+        </div>
+        <br>
+        <br>
+        <label><strong>Does this issue impact integrations?:</strong><span class="required-marker">*</span></label>
+        <br>
+        <label>Yes<input type="radio" id="integrationYes" name="integrations" value="Yes">
+        </label>
+        <label>No<input type="radio" id="integrationNo" name="integrations" value="No">
+        </label>
+        <br>
+        <br>
+        <label><strong>Who, or what is impacted by this issue (i.e. users, employees, clocks)?:</strong><span class="required-marker">*</span></label>
+        <select id="impactedUsers" name="impactedUsers">
+          <option value="" disabled selected>Select a value</option>
+          <option value="UKG Pro WFM Managers, or Administrators">
+            UKG Pro WFM Managers or Administrators</option>
+          <option value="UKG Pro WFM Timekeeper Employee(s)">
+            UKG Pro WFM Timekeeper Employee(s)</option>
+          <option value="UKG Pro WFM HCM Employee(s)/Manager(s)">
+            UKG Pro WFM HCM Employee(s)/Manager(s)</option>
+          <option value="Other">
+            Other</option>
+        </select>
+        <br>
+        <br>
+        <label><strong>What range of users, employees, managers does the issue affect?:</strong><span class="required-marker">*</span></label>
+        <select id="impactedUsersRange" name="impactedUsersRange">
+          <option value="" disabled selected>Select a value</option>
+          <option value="Unknown">
+            Unknown</option>
+          <option value="Only one user is affected">
+            Only one is affected</option>
+          <option value="Some users, but not all are affected">
+            Some, but not all are affected</option>
+          <option value="All users are affected">
+            All are affected</option>
+        </select>
+        <br>
+        <br>
+        <label><strong>Is there a specific time or event that triggers the problem?:</strong><span class="required-marker">*</span></label>
+        <select id="timeframeTrigger" name="timeframeTrigger">
+          <option value="" disabled selected>Select a value</option>
+          <option value="No, it is reproducible any time">
+            No, it is reproducible any time</option>
+          <option value="No, it occurs intermittently">
+            No, it occurs intermittently</option>
+          <option value="Yes, payroll processing days">
+            Yes, payroll processing days</option>
+          <option value="Yes, a Daylight Saving Time change">
+            Yes, a Daylight Saving Time change</option>
+          <option value="Yes, it is triggered by some OTHER event not listed">
+            Yes, it is triggered by some OTHER event not listed</option>
+        </select>
+        <br>
+        <br>
+        <label><strong>What customers would be affected by this issue?:</strong><span class="required-marker">*</span></label>
+        <br>
+        <input type="radio" id="affectedCustomersSpecific" name="affectedCustomers" value="affectedCustomersSpecific">
+        <label for="affectedCustomersSpecific">The problem is customer specific</label>
+        <br>
+        <input type="radio" id="affectedCustomersAll" name="affectedCustomers" value="affectedCustomersAll">
+        <label for="affectedCustomersAll">The problem affects all customers</label>
+        <br>
+        <h3>C. Steps to Reproduce</h3>
+        <label><strong>What is the reproducibility for the issue?:</strong><span class="required-marker">*</span></label>
+        <select id="reproducibility" name="reproducibility">
+          <option value="" disabled selected>Select a value</option>
+          <option
+            value="The problem was reported by a customer, but can be reproduced in any CFN tenant">
+            The problem was reported by a customer, but can be reproduced in any CFN tenant
+          </option>
+          <option
+            value="The problem was reported by a customer, but cannot be reproduced in any other tenant">
+            The problem was reported by a customer, but cannot be reproduced in any other tenant</option>
+          <option value="The problem was reported on a CFN tenant, but can also be reproduced in any CFN tenant">
+            The problem was reported on a CFN tenant, but can also be reproduced in any CFN tenant</option>
+          <option
+            value="The problem was reported on a CFN tenant, but cannot be reproduced on any other tenant">
+            The problem was reported on a CFN tenant, but cannot be reproduced on any other tenant</option>
+          <option
+            value="The problem was reported on a NXT or EVL tenant, but can also be reproduced in any CFN tenant">
+            The problem was reported on a NXT or EVL tenant, but can also be reproduced in any CFN tenant</option>
+          <option
+            value="The problem was reported on a NXT or EVL tenant, but cannot be reproduced on a CFN tenant due to version differences">
+            The problem was reported on a NXT or EVL tenant, but cannot be reproduced on a CFN tenant due to version
+            differences
+          </option>
+        </select>
+        <h5>Please provide detail steps in a number format to reproduce the issue in the box below. <span class="required-marker">*</span></h5>
+        <textarea id="reproductionSteps" name="reproductionSteps" rows="15" cols=75"></textarea>
+        <br>
+        <br>
+        <label><strong>Business Impact:</strong><span class="required-marker">*</span></label>
+        <input type="text" id="businessImpact" name="businessImpact" required>
+        <br>
+      </div>
+      <h2>Section III: Workaround</h2>
+      <div class="formSection" id="workaround">
+        <br>
+        <label><strong>Is a workaround available?:</strong><span class="required-marker">*</span></label>
+        <br>
+        <input type="radio" id="workaroundNo" name="workaround" value="No">
+        <label for="workaroundNo">No</label>
+        <br>
+        <input type="radio" id="workaroundYesCustNo" name="workaround" value="YesCustNo">
+        <label for="workaroundYesCustNo">Yes, but the customer does not accept it.</label>
+        <br>
+        <input type="radio" id="workaroundYes" name="workaround" value="Yes">
+        <label for="workaroundYes">Yes</label>
+        <br>
+        <p>If a workaround is available, provide the details: </p>
+        <label><strong>Workaround Details:</strong></label>
+        <textarea id="workaroundDetails" name="workaroundDetails" rows="5" cols=75"></textarea>
+        </div>
+        <div class="buttonSection" id="buttonSection">
+          <button type="button" class = "button" onclick="submitForm(event)">Generate</button>
+    </form>
+  </div>
+</body>
+</html>

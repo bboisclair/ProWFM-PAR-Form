@@ -17,17 +17,23 @@ function submitForm(event) {
   var reproducibility = document.getElementById('reproducibility').value;
   var reproductionSteps = document.getElementById('reproductionSteps').value;
   var mobileValue = getSelectedValue(form.elements["mobile"]);
-  var integrationsValue = getSelectedValue(form.elements["integrations"]);
   var businessImpact = document.getElementById('businessImpact').value;
-  document.getElementById('reproductionSteps').innerHTML = reproductionSteps;
-  var mobileOutput = '';
-  var mobileDetails = '';
-  var integrationsOutput = '';
   var mobileDevice = document.getElementById('mobileDevice').value;
   var mobileApp = document.getElementById('mobileApp').value;
   var workaroundValue = getSelectedValue(form.elements["workaround"]);
   var workaroundOutput = '';
   var workaroundDetails = document.getElementById('workaroundDetails').value;
+  var integrationCheckbox1 = document.getElementById('integrationCheckbox1');
+  var integrationCheckbox2 = document.getElementById('integrationCheckbox2');
+  var boomiAccountName = document.getElementById('boomiAccountName').value;
+  var executionID = document.getElementById('executionID').value;
+
+  var mobileOutput = '';
+  var mobileDetails = '';
+  var integrationOutput = '';
+  var integrationDetails = '';
+  
+  document.getElementById('reproductionSteps').innerHTML = reproductionSteps;
   document.getElementById('workaroundDetails').innerHTML = workaroundDetails;
 
   // Replace line breaks with a placeholder before submitting for textareas
@@ -48,11 +54,29 @@ function submitForm(event) {
     `;
   }
 
-  //IF STATEMENT TO COMPARE INTEGRATION RADIO BUTTONS
-  if (integrationsValue === "No") {
-    integrationsOutput = '';
-  } else if (integrationsValue === "Yes") {
-    integrationsOutput = 'This impacts integrations.';
+if (integrationCheckbox1.checked || integrationCheckbox2.checked) {
+  integrationOutput = 'This impacts integrations, specifically in the following areas:';
+}
+
+  // Include integration details based on the checked checkboxes
+  if (integrationCheckbox1.checked && integrationCheckbox2.checked) {
+    integrationDetails = `<br>Issue is present within the Integration Hub and anytime the API call is made
+    <br>
+    <strong>Boomi Account:</strong> ${boomiAccountName}
+    <br>
+    <strong>Execution ID:</strong> ${executionID}`;
+  } else {
+    if (integrationCheckbox1.checked) {
+      integrationDetails += `<br>Issue is present within the Integration Hub.
+      <br>
+      <strong>Boomi Account:</strong> ${boomiAccountName}
+      <br>
+      <strong>Execution ID:</strong> ${executionID}`;
+    }
+
+    if (integrationCheckbox2.checked) {
+      integrationDetails += '<br>Issue is present anytime the API call is made.';
+    }
   }
 
   //IF STATEMENT TO COMPARE AFFECTED CUSTOMER RADIO BUTTONS
@@ -97,6 +121,7 @@ function submitForm(event) {
   if (summary && prevWorked && problem && expectedResult && tenantURL && tenantStack && mobileValue && integrationsValue
     && impactedUsers && impactedUsersRange && timeframeTrigger && affectedCustomers && reproducibility && reproductionSteps
     && businessImpact && workaroundValue) {
+
     // Construct the content for the new tab
     var content = `
     <link rel="stylesheet" href="style.css">
@@ -138,15 +163,12 @@ function submitForm(event) {
         <strong>What range of users, employees, managers does the issue affect?:</strong> ${impactedUsersRange}
         <br>
         <strong>Is there a specific time or event that triggers the problem?:</strong> ${timeframeTrigger}
+        <br>
         ${mobileOutput}
         ${mobileDetails}
         <br>
-        ${integrationsOutput}
-        <p><strong>Tenant Details:</strong><br>===========
-        <br>
-        <strong>Tenant URL:</strong> ${tenantURL}
-        <br>
-        <strong>Tenant Stack:</strong> ${tenantStack}
+        ${integrationOutput}
+        ${integrationDetails}
         <br>
         <p><strong>Business Impact:</strong><br>==============
         <br>
@@ -156,9 +178,15 @@ function submitForm(event) {
         <br>
         ${workaroundDetails.replace(/\|\|\|/g, '<br>')}
         <h2>Steps to Reproduce:</h2>
+        <p><strong>Tenant Details:</strong><br>===========
+        <br>
+        <strong>Tenant URL:</strong> ${tenantURL}
+        <br>
+        <strong>Tenant Stack:</strong> ${tenantStack}
+        <p><strong>Steps To Reproduce:</strong><br>===============
         <p><strong>Reproducibility:</strong> ${reproducibility}</p>
         ${reproductionSteps.replace(/\|\|\|/g, '<br>')}
-
+        <br>
         <div class="buttonSection" id="buttonSection">
           <button type="button" class = "button" onclick="closeCurrentTab(event)">Edit Information</button>
       </form>
@@ -200,23 +228,26 @@ function hideIntegrationCheckboxes() {
   integrationCheckboxContainer.style.display = 'none';
 }
 
-//FUNCTION TO SHOW SHOW INTEGRATION TEXTBOX IF CHECKBOX IS CHECKED YES
+// FUNCTION TO TOGGLE INTEGRATION TEXTBOX BASED ON THE FIRST CHECKBOX
+function toggleIntegrationTextbox() {
+  var integrationCheckbox1 = document.getElementById('integrationCheckbox1');
+  var additionalTextboxContainer = document.getElementById('integrationTextboxContainer');
+
+  if (integrationCheckbox1.checked) {
+    showIntegrationTextbox();
+  } else {
+    hideIntegrationTextbox();
+  }
+}
+
+// FUNCTION TO SHOW INTEGRATION TEXTBOX
 function showIntegrationTextbox() {
   var additionalTextboxContainer = document.getElementById('integrationTextboxContainer');
   additionalTextboxContainer.style.display = 'block';
 }
 
-//FUNCTION TO SHOW SHOW INTEGRATION TEXTBOX IF CHECKBOX IS CHECKED YES
+// FUNCTION TO HIDE INTEGRATION TEXTBOX
 function hideIntegrationTextbox() {
   var additionalTextboxContainer = document.getElementById('integrationTextboxContainer');
   additionalTextboxContainer.style.display = 'none';
 }
-
-// Add event listeners to the checkboxes
-document.getElementById('integrationCheckboxIHUB').addEventListener('change', function () {
-  if (this.checked) {
-    showIntegrationTextbox();
-  } else {
-    hideIntegrationTextbox();
-  }
-});

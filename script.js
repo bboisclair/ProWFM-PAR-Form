@@ -213,7 +213,7 @@ function hideIntegrationTextbox() {
 }
 
 // Add event listeners to the checkboxes
-document.getElementById('integrationCheckbox1').addEventListener('change', function () {
+document.getElementById('integrationCheckboxIHUB').addEventListener('change', function () {
   if (this.checked) {
     showIntegrationTextbox();
   } else {

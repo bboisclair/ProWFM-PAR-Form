@@ -211,3 +211,12 @@ function hideIntegrationTextbox() {
   var additionalTextboxContainer = document.getElementById('integrationTextboxContainer');
   additionalTextboxContainer.style.display = 'none';
 }
+
+// Add event listeners to the checkboxes
+document.getElementById('integrationCheckbox1').addEventListener('change', function () {
+  if (this.checked) {
+    showIntegrationTextboxes();
+  } else {
+    hideIntegrationTextboxes();
+  }
+});

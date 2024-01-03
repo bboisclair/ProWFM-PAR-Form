@@ -21,18 +21,19 @@ function submitForm(event) {
   var mobileDevice = document.getElementById('mobileDevice').value;
   var mobileApp = document.getElementById('mobileApp').value;
   var workaroundValue = getSelectedValue(form.elements["workaround"]);
-  var workaroundOutput = '';
   var workaroundDetails = document.getElementById('workaroundDetails').value;
   var integrationCheckbox1 = document.getElementById('integrationCheckbox1');
   var integrationCheckbox2 = document.getElementById('integrationCheckbox2');
   var boomiAccountName = document.getElementById('boomiAccountName').value;
   var executionID = document.getElementById('executionID').value;
+  var integrationsValue = getSelectedValue(form.elements["integrations"]);
 
   var mobileOutput = '';
   var mobileDetails = '';
   var integrationOutput = '';
   var integrationDetails = '';
-  
+  var workaroundOutput = '';
+
   document.getElementById('reproductionSteps').innerHTML = reproductionSteps;
   document.getElementById('workaroundDetails').innerHTML = workaroundDetails;
 

@@ -51,10 +51,8 @@ function submitForm(event) {
   //IF STATEMENT TO COMPARE INTEGRATION RADIO BUTTONS
   if (integrationsValue === "No") {
     integrationsOutput = '';
-    hideIntegrationCheckboxes();
   } else if (integrationsValue === "Yes") {
     integrationsOutput = 'This impacts integrations.';
-    showIntegrationCheckboxes();
   }
 
   //IF STATEMENT TO COMPARE AFFECTED CUSTOMER RADIO BUTTONS
@@ -200,4 +198,16 @@ function showIntegrationCheckboxes() {
 function hideIntegrationCheckboxes() {
   var integrationCheckboxContainer = document.getElementById('integrationCheckboxContainer');
   integrationCheckboxContainer.style.display = 'none';
+}
+
+//FUNCTION TO SHOW SHOW INTEGRATION TEXTBOX IF CHECKBOX IS CHECKED YES
+function showIntegrationTextbox() {
+  var additionalTextboxContainer = document.getElementById('integrationTextboxContainer');
+  additionalTextboxContainer.style.display = 'block';
+}
+
+//FUNCTION TO SHOW SHOW INTEGRATION TEXTBOX IF CHECKBOX IS CHECKED YES
+function hideIntegrationTextbox() {
+  var additionalTextboxContainer = document.getElementById('integrationTextboxContainer');
+  additionalTextboxContainer.style.display = 'none';
 }

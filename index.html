@@ -131,6 +131,7 @@ Version 1.0 - Initial Release
 
         <label>No<input type="radio" id="mobileNo" name="mobile" value="No" onclick="hideMobileTextbox()">
         </label>
+
         <div id="mobileTextboxContainer" style="display: none;">
           <p>
             Provide the following details for your Mobile App issue:</p>
@@ -145,23 +146,34 @@ Version 1.0 - Initial Release
         </div>
         <br>
         <br>
-        <label><strong>Does this issue impact integrations?:</strong><span class="required-marker">*</span></label>
+        <label><strong>Does this issue impact integrations/APIs?:</strong><span class="required-marker">*</span></label>
         <br>
-        <label>Yes<input type="radio" id="integrationYes" name="integrations" value="Yes">
+        <label>Yes<input type="radio" id="integrationYes" name="integrations" value="Yes"
+            onclick="showIntegrationCheckboxes()">
         </label>
-        <label>No<input type="radio" id="integrationNo" name="integrations" value="No">
+        <label>No<input type="radio" id="integrationNo" name="integrations" value="No"
+            onclick="hideIntegrationCheckboxes()">
         </label>
 
         <div id="integrationCheckboxContainer" style="display: none;">
           <p>
-            Select the integrations impacted by this issue:
+            Select the integrations components impacted by this issue:
           </p>
-          <input type="checkbox" id="integrationCheckbox1" name="integrationCheckbox1">
-          <label for="integrationCheckbox1">Integration 1</label>
+          <input type="checkbox" id="integrationCheckbox1" name="integrationCheckboxIHUB">
+          <label>Issue occurs in the Integration Hub</label>
           <br>
-          <input type="checkbox" id="integrationCheckbox2" name="integrationCheckbox2">
-          <label for="integrationCheckbox2">Integration 2</label>
+          <input type="checkbox" id="integrationCheckbox2" name="integrationCheckboxAPI">
+          <label>Issue occurs when the API call is made</label>
 
+          <div id="integrationTextboxContainer" style="display: none;">
+            <p>
+              Provide the following details for your Integration issue:</p>
+            <p>
+              Integration Run Name:<input type="text" id="integrationName"
+                name="integrationName" required> <br>
+              Integration Run ID:<input type="text" id="integrationID" name="integrationID" required>
+              <br>
+          </div>
         </div>
         <br>
         <br>

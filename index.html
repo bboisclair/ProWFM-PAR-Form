@@ -148,21 +148,19 @@ Version 1.0 - Initial Release
         <br>
         <label><strong>Does this issue impact integrations/APIs?:</strong><span class="required-marker">*</span></label>
         <br>
-        <label>Yes<input type="radio" id="integrationYes" name="integrations" value="Yes"
-            onclick="showIntegrationCheckboxes()">
+        <label>Yes<input type="radio" id="integrationYes" name="integrations" value="Yes">
         </label>
-        <label>No<input type="radio" id="integrationNo" name="integrations" value="No"
-            onclick="hideIntegrationCheckboxes()">
+        <label>No<input type="radio" id="integrationNo" name="integrations" value="No">
         </label>
 
         <div id="integrationCheckboxContainer" style="display: none;">
           <p>
             Select the integrations components impacted by this issue:
           </p>
-          <input type="checkbox" id="integrationCheckbox1" name="integrationCheckboxIHUB">
+          <input type="checkbox" id="integrationCheckboxIHUB" name="integrationCheckboxIHUB">
           <label>Issue occurs in the Integration Hub</label>
           <br>
-          <input type="checkbox" id="integrationCheckbox2" name="integrationCheckboxAPI">
+          <input type="checkbox" id="integrationCheckboxAPI" name="integrationCheckboxAPI">
           <label>Issue occurs when the API call is made</label>
 
           <div id="integrationTextboxContainer" style="display: none;">

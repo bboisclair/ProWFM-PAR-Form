@@ -27,6 +27,8 @@ function submitForm(event) {
   var boomiAccountName = document.getElementById('boomiAccountName').value;
   var executionID = document.getElementById('executionID').value;
   var integrationsValue = getSelectedValue(form.elements["integrations"]);
+  var impactedUsersDropdown = document.getElementById("impactedUsers");
+  var impactedUserTextbox = document.getElementById("impactedUserTextbox");
 
   var mobileOutput = '';
   var mobileDetails = '';
@@ -55,9 +57,9 @@ function submitForm(event) {
     `;
   }
 
-if (integrationCheckbox1.checked || integrationCheckbox2.checked) {
-  integrationOutput = 'This impacts integrations, specifically in the following areas:';
-}
+  if (integrationCheckbox1.checked || integrationCheckbox2.checked) {
+    integrationOutput = 'This impacts integrations, specifically in the following areas:';
+  }
 
   // Include integration details based on the checked checkboxes
   if (integrationCheckbox1.checked && integrationCheckbox2.checked) {
@@ -119,9 +121,9 @@ if (integrationCheckbox1.checked || integrationCheckbox2.checked) {
   }
 
   //IF STATEMENT FOR REQUIRED FIELD CHECK
-  if (summary && prevWorked && problem && expectedResult && tenantURL && tenantStack && mobileValue && integrationsValue
+  if (summary /*&& prevWorked && problem && expectedResult && tenantURL && tenantStack && mobileValue && integrationsValue
     && impactedUsers && impactedUsersRange && timeframeTrigger && affectedCustomers && reproducibility && reproductionSteps
-    && businessImpact && workaroundValue) {
+    && businessImpact && workaroundValue*/) {
 
     // Construct the content for the new tab
     var content = `
@@ -202,7 +204,7 @@ if (integrationCheckbox1.checked || integrationCheckbox2.checked) {
   else {
     alert("Please fill out all required fields to continue. The defect cannot be approved without them.");
   }
-  
+
 }
 
 //FUNCTION TO SHOW MOBILE TEXTBOX IF RADIO BUTTON IS CHECKED YES
@@ -251,4 +253,18 @@ function showIntegrationTextbox() {
 function hideIntegrationTextbox() {
   var additionalTextboxContainer = document.getElementById('integrationTextboxContainer');
   additionalTextboxContainer.style.display = 'none';
+}
+
+// FUNCTION TO SHOW INTEGRATION TEXTBOX
+function showImpactedUserTextbox() {
+  // Check the selected value
+  if (impactedUsers.value === "Other") {
+    // If the selected value is "other", show the textbox
+    impactedUsersTextboxContainer.style.display = "block";
+  } else {
+    // Otherwise, hide the textbox
+    impactedUsersTextboxContainer.style.display = "none";
+    // Optional: Clear the textbox when hiding it
+    impactedUserTextbox.value = "";
+  }
 }

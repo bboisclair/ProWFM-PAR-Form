@@ -26,15 +26,18 @@ function submitForm(event) {
   var integrationCheckbox2 = document.getElementById('integrationCheckbox2');
   var boomiAccountName = document.getElementById('boomiAccountName').value;
   var executionID = document.getElementById('executionID').value;
+  var impactedUserTextbox = document.getElementById('impactedUserTextbox').value;
+
   var integrationsValue = getSelectedValue(form.elements["integrations"]);
   var impactedUsersDropdown = document.getElementById("impactedUsers");
-  var impactedUserTextbox = document.getElementById("impactedUserTextbox");
 
   var mobileOutput = '';
   var mobileDetails = '';
   var integrationOutput = '';
   var integrationDetails = '';
   var workaroundOutput = '';
+
+  var missingFields = [];
 
   document.getElementById('reproductionSteps').innerHTML = reproductionSteps;
   document.getElementById('workaroundDetails').innerHTML = workaroundDetails;
@@ -58,7 +61,7 @@ function submitForm(event) {
   }
 
   if (integrationCheckbox1.checked || integrationCheckbox2.checked) {
-    integrationOutput = 'This impacts integrations, specifically in the following areas:';
+    integrationOutput = '<br>This impacts integrations, specifically in the following areas:';
   }
 
   // Include integration details based on the checked checkboxes
@@ -120,11 +123,35 @@ function submitForm(event) {
     return null;
   }
 
-  //IF STATEMENT FOR REQUIRED FIELD CHECK
-  if (summary /*&& prevWorked && problem && expectedResult && tenantURL && tenantStack && mobileValue && integrationsValue
-    && impactedUsers && impactedUsersRange && timeframeTrigger && affectedCustomers && reproducibility && reproductionSteps
-    && businessImpact && workaroundValue*/) {
+  function checkMissingField(field, fieldName) {
+    if (!field || field.trim() === "") {
+      missingFields.push(fieldName);
+    }
+  }
 
+  // Check each required field
+  checkMissingField(summary, 'Issue Summary');
+  checkMissingField(prevWorked, 'Did this previously work?');
+  checkMissingField(problem, 'Problem Statement');
+  checkMissingField(expectedResult, 'Expected Result');
+  checkMissingField(tenantURL, 'Tenant URL');
+  checkMissingField(tenantStack, 'Tenant Stack');
+  checkMissingField(mobileValue, 'Does this impact mobile?');
+  checkMissingField(integrationsValue, 'Does this impact integrations/APIs?');
+  checkMissingField(impactedUsers, 'Who is impacted by this issue?');
+  checkMissingField(impactedUsersRange, 'What range of users, employees, managers does the issue affect?');
+  checkMissingField(timeframeTrigger, 'Is there a specific time or event that triggers the problem?');
+  checkMissingField(affectedCustomers, 'What customers would be affected by this issue?');
+  checkMissingField(reproducibility, 'What is the reproducibility for the issue?');
+  checkMissingField(reproductionSteps, 'Steps to Reproduce');
+  checkMissingField(businessImpact, 'Business Impact');
+  checkMissingField(workaroundValue, 'Is a workaround available?');
+
+  //IF STATEMENT FOR REQUIRED FIELD CHECK
+  if (missingFields.length > 0) {
+    alert("Please fill out the following required fields:\n" + missingFields.join('\n'));
+  }
+  else {
     // Construct the content for the new tab
     var content = `
     <link rel="stylesheet" href="style.css">
@@ -161,15 +188,13 @@ function submitForm(event) {
         ${prevWorked}
         <p><strong>Scope:</strong><br>=======
         <br>
-        <strong>This issue affects the following:</strong> ${impactedUsers}
+        <strong>This issue affects the following:</strong> ${impactedUsers} - ${impactedUserTextbox}
         <br>
         <strong>What range of users, employees, managers does the issue affect?:</strong> ${impactedUsersRange}
         <br>
         <strong>Is there a specific time or event that triggers the problem?:</strong> ${timeframeTrigger}
-        <br>
         ${mobileOutput}
         ${mobileDetails}
-        <br>
         ${integrationOutput}
         ${integrationDetails}
         <br>
@@ -195,14 +220,10 @@ function submitForm(event) {
       </form>
     </div>
   `;
-
     // Open a new tab and write the content
     var newTab = window.open();
     newTab.document.write(content);
     newTab.document.close();
-  }
-  else {
-    alert("Please fill out all required fields to continue. The defect cannot be approved without them.");
   }
 
 }

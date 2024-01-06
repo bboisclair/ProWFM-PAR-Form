@@ -22,7 +22,6 @@ Version 1.0 - Initial Release
   <title>Pre-PAR Generator</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body>
@@ -47,7 +46,7 @@ Version 1.0 - Initial Release
         before submission.</li>
     </ol>
   </div>
-<div id="formContainer">
+  <div id="formContainer">
     <form id="myForm">
       <h2>Section I: Issue Summary</h2>
       <div class="formSection" id="issueSummary">
@@ -75,10 +74,6 @@ Version 1.0 - Initial Release
             value="Yes, this was working, and Global Support has proven that this is a regression introduced by an Express Upgrade or a Patch">
             Yes, this was working, and Global Support has proven that this is a regression introduced by an Express
             Upgrade or a Patch</option>
-          <option value="Yes, this was working, but the problem began after changes to configuration.">Yes, this was
-            working, but the problem began after changes to configuration.</option>
-          <option value="Yes, this was working, but the problem started happening after a change to an integration">Yes,
-            this was working, but the problem started happening after a change to an integration</option>
           <option
             value="Yes, this was working as expected, but we have determined with some certainty that it started after some OTHER event or change">
             Yes, this was working as expected, but we have determined with some certainty that it started after some
@@ -107,20 +102,18 @@ Version 1.0 - Initial Release
         <label><strong>Tenant Stack:</strong><span class="required-marker">*</span></label>
         <select id="tenantStack" name="tenantStack">
           <option value="" disabled selected>Select a value</option>
-          <option value="Australia NPR/PRD">
-            Australia NPR/PRD</option>
-          <option value="Canada NPR/PRD">
-            Canada NPR/PRD</option>
-          <option value="CFN">
-            CFN - Cross-functional</option>
-          <option value="Europe EU NPR/PRD">
-            Europe EU NPR/PRD</option>
-          <option value="NAM NPR">
-            NAM NPR</option>
           <option value="NAM PRD">
             NAM PRD</option>
-          <option value="Other (please find details in problem description)">
-            Other (please find details in problem description)</option>
+          <option value="NAM NPR">
+            NAM NPR</option>
+          <option value="CFN">
+            CFN </option>
+          <option value="APAC NPR/PRD">
+            APAC NPR/PRD</option>
+          <option value="CAN NPR/PRD">
+            CAN NPR/PRD</option>
+          <option value="EMEA NPR/PRD">
+            EMEA NPR/PRD</option>
         </select>
         <br>
         <br>
@@ -148,23 +141,25 @@ Version 1.0 - Initial Release
         <br>
         <label><strong>Does this issue impact integrations/APIs?:</strong><span class="required-marker">*</span></label>
         <br>
-        <label>Yes<input type="radio" id="integrationYes" name="integrations" value="Yes" onclick="showIntegrationCheckboxes()">
+        <label>Yes<input type="radio" id="integrationYes" name="integrations" value="Yes"
+            onclick="showIntegrationCheckboxes()">
         </label>
-        <label>No<input type="radio" id="integrationNo" name="integrations" value="No" onclick="hideIntegrationCheckboxes()">
+        <label>No<input type="radio" id="integrationNo" name="integrations" value="No"
+            onclick="hideIntegrationCheckboxes()">
         </label>
 
         <div id="integrationCheckboxContainer" style="display: none;">
           <p>
             Select the integrations components impacted by this issue:
           </p>
-          <input type="checkbox" id="integrationCheckbox1" name="integrationCheckboxIHUB" onchange="toggleIntegrationTextbox()">
+          <input type="checkbox" id="integrationCheckbox1" name="integrationCheckboxIHUB"
+            onchange="toggleIntegrationTextbox()">
           <label>Integration Hub</label>
-          <br>
           <div id="integrationTextboxContainer" style="display: none;">
             <p>
               Provide the following details for your Integration issue:</p>
             <p>
-              Boomi Account:<input type="text" id="boomiAccountName" name="boomiAccountName" required> 
+              Boomi Account:<input type="text" id="boomiAccountName" name="boomiAccountName" required>
               <br>
               Execution ID:<input type="text" id="executionID" name="executionID" required>
               <br>
@@ -175,33 +170,37 @@ Version 1.0 - Initial Release
         </div>
         <br>
         <br>
-        <label><strong>Who, or what is impacted by this issue (i.e. users, employees, clocks)?:</strong><span
+        <label><strong>Who is impacted by this issue?:</strong><span
             class="required-marker">*</span></label>
-        <select id="impactedUsers" name="impactedUsers">
+        <select id="impactedUsers" name="impactedUsers" onchange="showImpactedUserTextbox()">
           <option value="" disabled selected>Select a value</option>
           <option value="UKG Pro WFM Managers, or Administrators">
             UKG Pro WFM Managers or Administrators</option>
           <option value="UKG Pro WFM Timekeeper Employee(s)">
-            UKG Pro WFM Timekeeper Employee(s)</option>
-          <option value="UKG Pro WFM HCM Employee(s)/Manager(s)">
-            UKG Pro WFM HCM Employee(s)/Manager(s)</option>
+            UKG Pro WFM Employee(s)</option>
           <option value="Other">
             Other</option>
         </select>
+
+        <div id="impactedUsersTextboxContainer" style="display: none;">
+            Specify User:<input type="text" id="impactedUserTextbox" name="impactedUserTextbox" required>
+            <br>
+        </div>
+
         <br>
         <br>
         <label><strong>What range of users, employees, managers does the issue affect?:</strong><span
             class="required-marker">*</span></label>
         <select id="impactedUsersRange" name="impactedUsersRange">
           <option value="" disabled selected>Select a value</option>
-          <option value="Unknown">
-            Unknown</option>
+          <option value="All users are affected">
+            All users are affected</option>
           <option value="Only one user is affected">
             Only one is affected</option>
           <option value="Some users, but not all are affected">
             Some, but not all are affected</option>
-          <option value="All users are affected">
-            All are affected</option>
+          <option value="Not Applicable">
+            Not Applicable</option>
         </select>
         <br>
         <br>
@@ -285,5 +284,4 @@ Version 1.0 - Initial Release
     </form>
   </div>
 </body>
-
 </html>

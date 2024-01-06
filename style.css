@@ -76,6 +76,7 @@ body {
     width: 100%; /* Make the dropdown fill the container */
     max-width: 100%; /* Set the maximum width of the dropdown to 100% */
     box-sizing: border-box; /* Include padding and border in the element's total width */
+    font-family: Arial, sans-serif;
   }
   .visually-hidden { 
     border: 0;

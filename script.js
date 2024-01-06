@@ -186,7 +186,7 @@ function submitForm(event) {
         <p><strong>Suspected Problem Origin:</strong><br>=======================
         <br>
         ${prevWorked}
-        <p><strong>Scope:</strong><br>=======
+        <p><strong>Scope:</strong><br>======
         <br>
         <strong>This issue affects the following:</strong> ${impactedUsers} - ${impactedUserTextbox}
         <br>
@@ -201,17 +201,17 @@ function submitForm(event) {
         <p><strong>Business Impact:</strong><br>==============
         <br>
         ${businessImpact}
-        <p><strong>Workaround</strong><br>=================
+        <p><strong>Workaround</strong><br>===========
         <p><strong>Is a workaround available?:</strong> ${workaroundOutput}
         <br>
         ${workaroundDetails.replace(/\|\|\|/g, '<br>')}
         <h2>Steps to Reproduce:</h2>
-        <p><strong>Tenant Details:</strong><br>===========
+        <p><strong>Tenant Details:</strong><br>============
         <br>
         <strong>Tenant URL:</strong> ${tenantURL}
         <br>
         <strong>Tenant Stack:</strong> ${tenantStack}
-        <p><strong>Steps To Reproduce:</strong><br>===============
+        <p><strong>Steps To Reproduce:</strong><br>=================
         <p><strong>Reproducibility:</strong> ${reproducibility}</p>
         ${reproductionSteps.replace(/\|\|\|/g, '<br>')}
         <br>

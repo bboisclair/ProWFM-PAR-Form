@@ -178,7 +178,12 @@ function submitForm(event) {
         <p><strong>Expected Result:</strong><br>=============
         <br>
         ${expectedResult}
-
+        <br>
+        <p><strong>Tenant Details:</strong><br>============
+        <br>
+        <strong>Tenant URL:</strong> ${tenantURL}
+        <br>
+        <strong>Tenant Stack:</strong> ${tenantStack}
         <p><strong>Additional Information:</strong><br>====================
         <br>
         ${additionalInfo.replace(/\|\|\|/g, '<br>')}
@@ -206,11 +211,6 @@ function submitForm(event) {
         <br>
         ${workaroundDetails.replace(/\|\|\|/g, '<br>')}
         <h2>Steps to Reproduce:</h2>
-        <p><strong>Tenant Details:</strong><br>============
-        <br>
-        <strong>Tenant URL:</strong> ${tenantURL}
-        <br>
-        <strong>Tenant Stack:</strong> ${tenantStack}
         <p><strong>Steps To Reproduce:</strong><br>=================
         <p><strong>Reproducibility:</strong> ${reproducibility}</p>
         ${reproductionSteps.replace(/\|\|\|/g, '<br>')}

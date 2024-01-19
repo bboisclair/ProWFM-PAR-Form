@@ -157,7 +157,7 @@ function submitForm(event) {
     <link rel="stylesheet" href="style.css">
     <div id="header">
       <img src="defect.png" class="header-icon">
-      <h1>Pre-PAR Generator for Pro WFM</h1>
+      <h1>PAR Generator for Pro WFM</h1>
       <img src="defect.png" class="header-icon">
     </div>
     <script>

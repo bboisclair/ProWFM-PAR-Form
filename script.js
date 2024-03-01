@@ -16,27 +16,22 @@ function submitForm(event) {
   var affectedCustomers = getSelectedValue(form.elements["affectedCustomers"]);
   var reproducibility = document.getElementById('reproducibility').value;
   var reproductionSteps = document.getElementById('reproductionSteps').value;
-  var mobileValue = getSelectedValue(form.elements["mobile"]);
   var businessImpact = document.getElementById('businessImpact').value;
-  var mobileDevice = document.getElementById('mobileDevice').value;
-  var mobileApp = document.getElementById('mobileApp').value;
   var workaroundValue = getSelectedValue(form.elements["workaround"]);
   var workaroundDetails = document.getElementById('workaroundDetails').value;
+  var impactedUserTextbox = document.getElementById('impactedUserTextbox').value;
+  var impactedUsersDropdown = document.getElementById("impactedUsers");
   var integrationCheckbox1 = document.getElementById('integrationCheckbox1');
   var integrationCheckbox2 = document.getElementById('integrationCheckbox2');
   var boomiAccountName = document.getElementById('boomiAccountName').value;
   var executionID = document.getElementById('executionID').value;
-  var impactedUserTextbox = document.getElementById('impactedUserTextbox').value;
-
-  var integrationsValue = getSelectedValue(form.elements["integrations"]);
-  var impactedUsersDropdown = document.getElementById("impactedUsers");
-
-  var mobileOutput = '';
-  var mobileDetails = '';
+  var mobileDevice = document.getElementById('mobileDevice').value;
+  var mobileApp = document.getElementById('mobileApp').value;
+  var supportCode = document.getElementById('supportCode').value;
+  
+  var workaroundOutput = '';
   var integrationOutput = '';
   var integrationDetails = '';
-  var workaroundOutput = '';
-
   var missingFields = [];
 
   document.getElementById('reproductionSteps').innerHTML = reproductionSteps;
@@ -47,18 +42,14 @@ function submitForm(event) {
   additionalInfo = additionalInfo.replace(/\n/g, '|||');
   workaroundDetails = workaroundDetails.replace(/\n/g, '|||');
 
-  //IF STATEMENT TO COMPARE MOBILE RADIO BUTTONS
-  if (mobileValue === "No") {
-    mobileOutput = '';
-  } else if (mobileValue === "Yes") {
-    mobileOutput = `
-    <br>
-    <br>
-    This impacts the mobile app.
-    <br>
-    <br>
+  mobileDetails = `
+      <br>
+      <strong>Manufacturer, Model, and OS version:</strong> ${mobileDevice}
+      <br>
+      <strong>Name, Version:</strong> ${mobileApp}
+      <br>
+      <strong>Support Code:</strong> ${supportCode}
     `;
-  }
 
   if (integrationCheckbox1.checked || integrationCheckbox2.checked) {
     integrationOutput = '<br>This impacts integrations, specifically in the following areas:';
@@ -90,16 +81,6 @@ function submitForm(event) {
     affectedCustomers = 'The problem is customer specific.';
   } else if (affectedCustomers === "affectedCustomersAll") {
     affectedCustomers = 'The problem affects all customers.';
-  }
-
-  //IF STATEMENT TO CHECK IF MOBILE RADIO BUTTON IS YES
-  if (mobileOutput) {
-    // If mobileOutput is not null, include mobile details
-    mobileDetails = `
-      <strong>Manufacturer, Model, and OS version:</strong> ${mobileDevice}
-      <br>
-      <strong>Name, Version:</strong> ${mobileApp}
-    `;
   }
 
   //IF STATEMENT TO COMPARE WORKAROUND OPTIONS
@@ -136,8 +117,6 @@ function submitForm(event) {
   checkMissingField(expectedResult, 'Expected Result');
   checkMissingField(tenantURL, 'Tenant URL');
   checkMissingField(tenantStack, 'Tenant Stack');
-  checkMissingField(mobileValue, 'Does this impact mobile?');
-  checkMissingField(integrationsValue, 'Does this impact integrations/APIs?');
   checkMissingField(impactedUsers, 'Who is impacted by this issue?');
   checkMissingField(impactedUsersRange, 'What range of users, employees, managers does the issue affect?');
   checkMissingField(timeframeTrigger, 'Is there a specific time or event that triggers the problem?');
@@ -154,105 +133,115 @@ function submitForm(event) {
   else {
     // Construct the content for the new tab
     var content = `
-    <link rel="stylesheet" href="style.css">
-    <div id="header">
-      <img src="defect.png" class="header-icon">
-      <h1>PAR Generator for Pro WFM</h1>
-      <img src="defect.png" class="header-icon">
-    </div>
-    <script>
-    function closeCurrentTab() {
-      window.close();
-    }
-    </script>
-    <div id="outputContainer">
-      <form id="outputForm">
-        <h2>Issue Summary</h2>
-        <p><strong>Issue Summary:</strong> ${summary}</p>
+      <link rel="stylesheet" href="style.css">
+    <header>
+        <img src="defect_white.png" class="header-icon" title="Defect Icon">
+        <h1> PAR Generator for Pro WFM </h1>
+        <img src="defect_white.png" class="header-icon" title="Defect Icon">
+    </header>
+      <script>
+      function closeCurrentTab() {
+        window.close();
+      }
+      </script>
+      <div id="outputContainer">
+        <form id="outputForm">
+          <h2>Issue Summary</h2>
+          <p>${summary}</p>
+  
+          <h2>JIRA Description</h2>
+          <p><strong>Problem:</strong><br>=======
+          <br>
+          ${problem}
+          
+          <p><strong>Expected Result:</strong><br>=============
+          <br>
+          ${expectedResult}
+          <br>
+          <p><strong>Tenant Details:</strong><br>============
+          <br>
+          <strong>Tenant URL:</strong> ${tenantURL}
+          <br>
+          <strong>Tenant Stack:</strong> ${tenantStack}
+          <p><strong>Additional Information:</strong><br>====================
+          <br>
+          ${additionalInfo.replace(/\|\|\|/g, '<br>')}
+  
+          <p><strong>Suspected Problem Origin:</strong><br>=======================
+          <br>
+          ${prevWorked}
+          <p><strong>Scope:</strong><br>======
+          <br>
+          <strong>This issue affects the following:</strong> ${impactedUsers}  ${impactedUserTextbox}
+          <br>
+          <strong>What range of users, employees, managers does the issue affect?:</strong> ${impactedUsersRange}
+          <br>
+          <strong>Is there a specific time or event that triggers the problem?:</strong> ${timeframeTrigger}
+          ${mobileDetails}
+          ${integrationOutput}
+          ${integrationDetails}
+          <br>
+          <p><strong>Business Impact:</strong><br>==============
+          <br>
+          ${businessImpact}
+          <p><strong>Workaround</strong><br>===========
+          <p><strong>Is a workaround available?:</strong> ${workaroundOutput}
+          <br>
+          ${workaroundDetails.replace(/\|\|\|/g, '<br>')}
+          <h2>Steps to Reproduce</h2>
+          <p><strong>Reproducibility:</strong> ${reproducibility}</p>
+          ${reproductionSteps.replace(/\|\|\|/g, '<br>')}
+          <br>
+          <div class="buttonSection" id="buttonSection">
+            <button type="button" class = "button" onclick="closeCurrentTab(event)">Edit Information</button>
+        </form>
+      </div>
+    `;
 
-        <h2>JIRA Description</h2>
-        <p><strong>Problem:</strong><br>=======
-        <br>
-        ${problem}
-        
-        <p><strong>Expected Result:</strong><br>=============
-        <br>
-        ${expectedResult}
-        <br>
-        <p><strong>Tenant Details:</strong><br>============
-        <br>
-        <strong>Tenant URL:</strong> ${tenantURL}
-        <br>
-        <strong>Tenant Stack:</strong> ${tenantStack}
-        <p><strong>Additional Information:</strong><br>====================
-        <br>
-        ${additionalInfo.replace(/\|\|\|/g, '<br>')}
-
-        <p><strong>Suspected Problem Origin:</strong><br>=======================
-        <br>
-        ${prevWorked}
-        <p><strong>Scope:</strong><br>======
-        <br>
-        <strong>This issue affects the following:</strong> ${impactedUsers} - ${impactedUserTextbox}
-        <br>
-        <strong>What range of users, employees, managers does the issue affect?:</strong> ${impactedUsersRange}
-        <br>
-        <strong>Is there a specific time or event that triggers the problem?:</strong> ${timeframeTrigger}
-        ${mobileOutput}
-        ${mobileDetails}
-        ${integrationOutput}
-        ${integrationDetails}
-        <br>
-        <p><strong>Business Impact:</strong><br>==============
-        <br>
-        ${businessImpact}
-        <p><strong>Workaround</strong><br>===========
-        <p><strong>Is a workaround available?:</strong> ${workaroundOutput}
-        <br>
-        ${workaroundDetails.replace(/\|\|\|/g, '<br>')}
-        <h2>Steps to Reproduce:</h2>
-        <p><strong>Steps To Reproduce:</strong><br>=================
-        <p><strong>Reproducibility:</strong> ${reproducibility}</p>
-        ${reproductionSteps.replace(/\|\|\|/g, '<br>')}
-        <br>
-        <div class="buttonSection" id="buttonSection">
-          <button type="button" class = "button" onclick="closeCurrentTab(event)">Edit Information</button>
-      </form>
-    </div>
-  `;
     // Open a new tab and write the content
     var newTab = window.open();
     newTab.document.write(content);
     newTab.document.close();
   }
-
 }
 
-//FUNCTION TO SHOW MOBILE TEXTBOX IF RADIO BUTTON IS CHECKED YES
-function showMobileTextbox() {
-  var additionalTextboxContainer = document.getElementById('mobileTextboxContainer');
-  additionalTextboxContainer.style.display = 'block';
+function hideComponentSectionFormContainer() {
+  var additionalComponentsToggle = document.getElementById("componentSectionFormContainer");
+  additionalComponentsToggle.style.display = "none";
 }
 
-//FUNCTION TO HIDE MOBILE TEXTBOX IF RADIO BUTTON IS CHECKED NO
-function hideMobileTextbox() {
-  var additionalTextboxContainer = document.getElementById('mobileTextboxContainer');
-  additionalTextboxContainer.style.display = 'none';
+function hideComponents() {
+  var integrationComponentsToggle = document.getElementById("integrationComponent");
+  var mobileComponentsToggle = document.getElementById("mobileAppComponent");
+
+  integrationComponentsToggle.style.display = "none";
+  mobileComponentsToggle.style.display = "none";
 }
 
-// FUNCTION TO SHOW INTEGRATION CHECKBOXES IF RADIO BUTTON IS CHECKED YES
-function showIntegrationCheckboxes() {
-  var integrationCheckboxContainer = document.getElementById('integrationCheckboxContainer');
-  integrationCheckboxContainer.style.display = 'block';
+function toggleIntegrationComponent() {
+  var additionalComponentsToggle = document.getElementById("componentSectionFormContainer");
+  var integrationComponentsToggle = document.getElementById("integrationComponent");
+  var mobileComponentsToggle = document.getElementById("mobileAppComponent");
+
+  hideComponents(); // Hide both components
+
+  var currentDisplayStyle = window.getComputedStyle(integrationComponentsToggle).display;
+  integrationComponentsToggle.style.display = currentDisplayStyle === "none" ? "block" : "none";
+  additionalComponentsToggle.style.display = currentDisplayStyle === "none" ? "block" : "none";
 }
 
-// FUNCTION TO HIDE INTEGRATION CHECKBOXES IF RADIO BUTTON IS CHECKED NO
-function hideIntegrationCheckboxes() {
-  var integrationCheckboxContainer = document.getElementById('integrationCheckboxContainer');
-  integrationCheckboxContainer.style.display = 'none';
+function toggleMobileAppComponent() {
+  var additionalComponentsToggle = document.getElementById("componentSectionFormContainer");
+  var integrationComponentsToggle = document.getElementById("integrationComponent");
+  var mobileComponentsToggle = document.getElementById("mobileAppComponent");
+
+  hideComponents(); // Hide both components
+
+  var currentDisplayStyle = window.getComputedStyle(mobileComponentsToggle).display;
+  mobileComponentsToggle.style.display = currentDisplayStyle === "none" ? "block" : "none";
+  additionalComponentsToggle.style.display = currentDisplayStyle === "none" ? "block" : "none";
 }
 
-// FUNCTION TO TOGGLE INTEGRATION TEXTBOX BASED ON THE FIRST CHECKBOX
 function toggleIntegrationTextbox() {
   var integrationCheckbox1 = document.getElementById('integrationCheckbox1');
   var additionalTextboxContainer = document.getElementById('integrationTextboxContainer');
@@ -264,19 +253,16 @@ function toggleIntegrationTextbox() {
   }
 }
 
-// FUNCTION TO SHOW INTEGRATION TEXTBOX
 function showIntegrationTextbox() {
   var additionalTextboxContainer = document.getElementById('integrationTextboxContainer');
   additionalTextboxContainer.style.display = 'block';
 }
 
-// FUNCTION TO HIDE INTEGRATION TEXTBOX
 function hideIntegrationTextbox() {
   var additionalTextboxContainer = document.getElementById('integrationTextboxContainer');
   additionalTextboxContainer.style.display = 'none';
 }
 
-// FUNCTION TO SHOW INTEGRATION TEXTBOX
 function showImpactedUserTextbox() {
   // Check the selected value
   if (impactedUsers.value === "Other") {
@@ -285,7 +271,13 @@ function showImpactedUserTextbox() {
   } else {
     // Otherwise, hide the textbox
     impactedUsersTextboxContainer.style.display = "none";
-    // Optional: Clear the textbox when hiding it
-    impactedUserTextbox.value = "";
   }
+}
+
+function selectComponent(componentName, callback){
+  document.getElementById('selectedComponent').textContent = componentName;
+
+  if (typeof callback === 'function') {
+    callback();
+}
 }

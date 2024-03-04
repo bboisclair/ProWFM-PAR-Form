@@ -128,7 +128,6 @@ input[type='text'] {
 
 button {
     background-color: #005151;
-    /* UKG Blue */
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -193,6 +192,12 @@ button:hover:after {
         padding: 14px 22px;
         width: 176px;
     }
+}
+
+.menuButton:active,
+.menuButton:focus {
+    background: lighten(#005151, 10%);
+    color: #fff;
 }
 
 #output {

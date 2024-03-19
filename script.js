@@ -32,7 +32,9 @@ function submitForm(event) {
   var workaroundOutput = '';
   var integrationOutput = '';
   var integrationDetails = '';
+  var mobileDetails = '';
   var missingFields = [];
+  
 
   document.getElementById('reproductionSteps').innerHTML = reproductionSteps;
   document.getElementById('workaroundDetails').innerHTML = workaroundDetails;
@@ -42,7 +44,8 @@ function submitForm(event) {
   additionalInfo = additionalInfo.replace(/\n/g, '|||');
   workaroundDetails = workaroundDetails.replace(/\n/g, '|||');
 
-  mobileDetails = `
+  if (mobileDevice || mobileApp || supportCode) {
+    mobileDetails = `
       <br>
       <strong>Manufacturer, Model, and OS version:</strong> ${mobileDevice}
       <br>
@@ -50,7 +53,8 @@ function submitForm(event) {
       <br>
       <strong>Support Code:</strong> ${supportCode}
     `;
-
+  }
+  
   if (integrationCheckbox1.checked || integrationCheckbox2.checked) {
     integrationOutput = '<br>This impacts integrations, specifically in the following areas:';
   }

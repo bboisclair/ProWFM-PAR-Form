@@ -128,6 +128,7 @@ input[type='text'] {
 
 button {
     background-color: #005151;
+    /* UKG Blue */
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -159,7 +160,7 @@ button {
 
 .menuButton:hover {
     background: #fff;
-    color: #1AAB8A;
+    color: #005151;
 }
 
 .menuButton:before,
@@ -170,7 +171,7 @@ button:after {
     right: 0;
     height: 2px;
     width: 0;
-    background: #1AAB8A;
+    background: #005151;
     transition: 400ms ease all;
 }
 
@@ -179,6 +180,7 @@ button:after {
     top: inherit;
     left: 0;
     bottom: 0;
+
 }
 
 .menuButton:hover:before,
@@ -192,12 +194,6 @@ button:hover:after {
         padding: 14px 22px;
         width: 176px;
     }
-}
-
-.menuButton:active,
-.menuButton:focus {
-    background: lighten(#005151, 10%);
-    color: #fff;
 }
 
 #output {

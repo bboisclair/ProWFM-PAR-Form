@@ -43,9 +43,9 @@ Version 2.0 - Design Update
                 <p>Please select the appropriate component</p>
                 <!-- Hyperlinks -->
                 <ul>
-                    <button onclick="selectComponent('Standard PAR', hideComponentSectionFormContainer)" class="menuButton" role="button">Standard PAR</button>
-                    <button onclick="selectComponent('Integrations', toggleIntegrationComponent)" class="menuButton" role="button">Integrations</button>
-                    <button onclick="selectComponent('Mobile', toggleMobileAppComponent)" class="menuButton" role="button">Mobile</button>
+                    <button onclick="selectComponent('Standard PAR', hideComponentSectionFormContainer); changeBackgroundColor(this)" class="menuButton" role="button">Standard PAR</button>
+                    <button onclick="selectComponent('Integrations', toggleIntegrationComponent); changeBackgroundColor(this)" class="menuButton" role="button">Integrations</button>
+                    <button onclick="selectComponent('Mobile', toggleMobileAppComponent); changeBackgroundColor(this)" class="menuButton" role="button">Mobile</button>
                 </ul>
                 <p>Currently Selected: <span id="selectedComponent">Standard PAR</span></p>
             </div>

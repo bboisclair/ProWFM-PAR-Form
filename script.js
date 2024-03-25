@@ -54,7 +54,7 @@ function submitForm(event) {
       <strong>Support Code:</strong> ${supportCode}
     `;
   }
-  
+
   if (integrationCheckbox1.checked || integrationCheckbox2.checked) {
     integrationOutput = '<br>This impacts integrations, specifically in the following areas:';
   }
@@ -284,4 +284,17 @@ function selectComponent(componentName, callback){
   if (typeof callback === 'function') {
     callback();
 }
+}
+
+function changeBackgroundColor(button) {
+  // Get all buttons with the class name 'menuButton'
+  var buttons = document.getElementsByClassName('menuButton');
+
+  // Remove background color from all buttons
+  for (var i = 0; i < buttons.length; i++) {
+      buttons[i].style.backgroundColor = '';
+  }
+
+  // Set background color for the clicked button
+  button.style.backgroundColor = '#087C79';
 }

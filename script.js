@@ -188,7 +188,7 @@ function submitForm(event) {
           <p><strong>Business Impact:</strong><br>==============
           <br>
           ${businessImpact}
-          <p><strong>Workaround</strong><br>===========
+          <p><strong>Workaround:</strong><br>===========
           <p><strong>Is a workaround available?:</strong> ${workaroundOutput}
           <br>
           ${workaroundDetails.replace(/\|\|\|/g, '<br>')}

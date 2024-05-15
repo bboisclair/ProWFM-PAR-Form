@@ -35,15 +35,6 @@ function submitForm(event) {
   var mobileDetails = '';
   var missingFields = [];
   
-
-  document.getElementById('reproductionSteps').innerHTML = reproductionSteps;
-  document.getElementById('workaroundDetails').innerHTML = workaroundDetails;
-
-  // Replace line breaks with a placeholder before submitting for textareas
-  reproductionSteps = reproductionSteps.replace(/\n/g, '|||');
-  additionalInfo = additionalInfo.replace(/\n/g, '|||');
-  workaroundDetails = workaroundDetails.replace(/\n/g, '|||');
-
   if (mobileDevice || mobileApp || supportCode) {
     mobileDetails = `
       <br>
@@ -156,11 +147,11 @@ function submitForm(event) {
           <h2>JIRA Description</h2>
           <p><strong>Problem:</strong><br>=======
           <br>
-          ${problem}
+          ${problem.replace(/\n/g, '<br>')}
           
           <p><strong>Expected Result:</strong><br>=============
           <br>
-          ${expectedResult}
+          ${expectedResult.replace(/\n/g, '<br>')}
           <br>
           <p><strong>Tenant Details:</strong><br>============
           <br>
@@ -169,7 +160,7 @@ function submitForm(event) {
           <strong>Tenant Stack:</strong> ${tenantStack}
           <p><strong>Additional Information:</strong><br>====================
           <br>
-          ${additionalInfo.replace(/\|\|\|/g, '<br>')}
+          ${additionalInfo.replace(/\n/g, '<br>')}
   
           <p><strong>Suspected Problem Origin:</strong><br>=======================
           <br>
@@ -187,14 +178,14 @@ function submitForm(event) {
           <br>
           <p><strong>Business Impact:</strong><br>==============
           <br>
-          ${businessImpact}
-          <p><strong>Workaround:</strong><br>===========
+          ${businessImpact.replace(/\n/g, '<br>')}
+          <p><strong>Workaround</strong><br>===========
           <p><strong>Is a workaround available?:</strong> ${workaroundOutput}
           <br>
-          ${workaroundDetails.replace(/\|\|\|/g, '<br>')}
+          ${workaroundDetails.replace(/\n/g, '<br>')}
           <h2>Steps to Reproduce</h2>
           <p><strong>Reproducibility:</strong> ${reproducibility}</p>
-          ${reproductionSteps.replace(/\|\|\|/g, '<br>')}
+          ${reproductionSteps.replace(/\n/g, '<br>')}
           <br>
           <div class="buttonSection" id="buttonSection">
             <button type="button" class = "button" onclick="closeCurrentTab(event)">Edit Information</button>

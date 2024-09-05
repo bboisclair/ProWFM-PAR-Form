@@ -169,9 +169,9 @@ function submitForm(event) {
           <br>
           <strong>This issue affects the following:</strong> ${impactedUsers}  ${impactedUserTextbox}
           <br>
-          <strong>What range of users, employees, managers does the issue affect?:</strong> ${impactedUsersRange}
+          <strong>What range of users, employees, managers does the issue affect?</strong> ${impactedUsersRange}
           <br>
-          <strong>Is there a specific time or event that triggers the problem?:</strong> ${timeframeTrigger}
+          <strong>Is there a specific time or event that triggers the problem?</strong> ${timeframeTrigger}
           ${mobileDetails}
           ${integrationOutput}
           ${integrationDetails}
@@ -180,7 +180,7 @@ function submitForm(event) {
           <br>
           ${businessImpact.replace(/\n/g, '<br>')}
           <p><strong>Workaround</strong><br>===========
-          <p><strong>Is a workaround available?:</strong> ${workaroundOutput}
+          <p><strong>Is a workaround available?</strong> ${workaroundOutput}
           <br>
           ${workaroundDetails.replace(/\n/g, '<br>')}
           <h2>Steps to Reproduce</h2>

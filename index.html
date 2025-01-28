@@ -16,6 +16,7 @@ CHANGE LOG:
 Version 1.0 - Initial Release
 Version 2.0 - Major Design Update
 Version 2.1 - Update to support formatting within HTML textboxs
+Version 3.0 - Minor Design Update
 -->
 
 <head>
@@ -37,19 +38,21 @@ Version 2.1 - Update to support formatting within HTML textboxs
 
     <!-- Main Content Section -->
     <div class="main-section">
-        <!-- Left Section -->
-        <div class="slideout-container">
-            <div class="left-section">
-                <h2>Component Selection</h2>
-                <p>Please select the appropriate component</p>
-                <!-- Hyperlinks -->
-                <ul>
-                    <button onclick="selectComponent('Standard PAR', hideComponentSectionFormContainer); changeBackgroundColor(this)" class="menuButton" role="button">Standard PAR</button>
-                    <button onclick="selectComponent('Integrations', toggleIntegrationComponent); changeBackgroundColor(this)" class="menuButton" role="button">Integrations</button>
-                    <button onclick="selectComponent('Mobile', toggleMobileAppComponent); changeBackgroundColor(this)" class="menuButton" role="button">Mobile</button>
-                </ul>
-                <p>Currently Selected: <span id="selectedComponent">Standard PAR</span></p>
-            </div>
+        <div class="left-section">
+            <h2>Component Selection</h2>
+            <p>Please select the appropriate component</p>
+            <!-- Hyperlinks -->
+            <ul>
+                <button
+                    onclick="selectComponent('Standard PAR', hideComponentSectionFormContainer); changeBackgroundColor(this)"
+                    class="menuButton" role="button">Standard PAR</button>
+                <button
+                    onclick="selectComponent('Integrations', toggleIntegrationComponent); changeBackgroundColor(this)"
+                    class="menuButton" role="button">Integrations</button>
+                <button onclick="selectComponent('Mobile', toggleMobileAppComponent); changeBackgroundColor(this)"
+                    class="menuButton" role="button">Mobile</button>
+            </ul>
+            <p>Currently Selected: <span id="selectedComponent">Standard PAR</span></p>
         </div>
         <!-- Right Section (Form) -->
         <div class="right-section">
@@ -65,40 +68,43 @@ Version 2.1 - Update to support formatting within HTML textboxs
                         <h3>A. Issue Details</h3>
                         <label>Has this ever worked? If YES, what change or event seemed to be what started this
                             problem?<span class="required-marker">*</span></label>
-                        <select id="prevWorked" name="prevWorked">
-                            <option value="">Select a value</option>
-                            <option
-                                value="Yes, but while there is reasonable proof or a creditable claim that this previously worked, there are no clues reported or discovered to more clearly define what started the issue, so Global Support is reporting the origin as 'uncertain'">
-                                Yes, but while there is reasonable proof or a creditable claim that this previously
-                                worked, there are no
-                                clues reported or discovered to more clearly define what started the issue, so Global
-                                Support is reporting
-                                the origin as 'uncertain'</option>
-                            <option
-                                value="Yes, this was working, and Global Support has proven that this is a regression introduced by a regular release or update. JIRA's 'Regression Yes/No' and 'Regression Introduced' fields will be set to reflect Global Support's findings">
-                                Yes, this was working, and Global Support has proven that this is a regression
-                                introduced by a regular
-                                release or update. JIRA's 'Regression Yes/No' and 'Regression Introduced' fields will be
-                                set to reflect
-                                Global Support's findings</option>
-                            <option
-                                value="Yes, this was working, and Global Support has proven that this is a regression introduced by an Express Upgrade or a Patch">
-                                Yes, this was working, and Global Support has proven that this is a regression
-                                introduced by an Express
-                                Upgrade or a Patch</option>
-                            <option
-                                value="Yes, this was working as expected, but we have determined with some certainty that it started after some OTHER event or change">
-                                Yes, this was working as expected, but we have determined with some certainty that it
-                                started after some
-                                OTHER event or change</option>
-                            <option
-                                value="No, this has not worked since originally set up and configured by UKG Professional Services, Partner, or by the customer">
-                                No, this has not worked since originally set up and configured by UKG Professional
-                                Services, Partner, or by
-                                the customer</option>
-                        </select>
-                        <br>
-                        <br>
+                        <div class="custom-select">
+                            <select id="prevWorked" name="prevWorked">
+                                <option value="">Select a value</option>
+                                <option
+                                    value="Yes, but while there is reasonable proof or a creditable claim that this previously worked, there are no clues reported or discovered to more clearly define what started the issue, so Global Support is reporting the origin as 'uncertain'">
+                                    Yes, but while there is reasonable proof or a creditable claim that this previously
+                                    worked, there are no
+                                    clues reported or discovered to more clearly define what started the issue, so
+                                    Global
+                                    Support is reporting
+                                    the origin as 'uncertain'</option>
+                                <option
+                                    value="Yes, this was working, and Global Support has proven that this is a regression introduced by a regular release or update. JIRA's 'Regression Yes/No' and 'Regression Introduced' fields will be set to reflect Global Support's findings">
+                                    Yes, this was working, and Global Support has proven that this is a regression
+                                    introduced by a regular
+                                    release or update. JIRA's 'Regression Yes/No' and 'Regression Introduced' fields
+                                    will be
+                                    set to reflect
+                                    Global Support's findings</option>
+                                <option
+                                    value="Yes, this was working, and Global Support has proven that this is a regression introduced by an Express Upgrade or a Patch">
+                                    Yes, this was working, and Global Support has proven that this is a regression
+                                    introduced by an Express
+                                    Upgrade or a Patch</option>
+                                <option
+                                    value="Yes, this was working as expected, but we have determined with some certainty that it started after some OTHER event or change">
+                                    Yes, this was working as expected, but we have determined with some certainty that
+                                    it
+                                    started after some
+                                    OTHER event or change</option>
+                                <option
+                                    value="No, this has not worked since originally set up and configured by UKG Professional Services, Partner, or by the customer">
+                                    No, this has not worked since originally set up and configured by UKG Professional
+                                    Services, Partner, or by
+                                    the customer</option>
+                            </select>
+                        </div>
                         <label><strong>Problem:</strong><span class="required-marker">*</span></label>
                         <textarea id="problem" name="problem" rows="10" cols=50"></textarea>
                         <br>
@@ -107,53 +113,52 @@ Version 2.1 - Update to support formatting within HTML textboxs
                         <br>
                         <label><strong>Additional Information:</strong></label>
                         <textarea id="additionalInfo" name="additionalInfo" rows="10" cols=75"></textarea>
-                        <br>
-                        <br>
                         <h3>B. Issue Scope</h3>
                         <label for="tenantURL"><strong>Tenant URL:</strong><span
                                 class="required-marker">*</span></label>
                         <input type="text" id="tenantURL" name="tenantURL" required>
                         <br>
                         <label><strong>Tenant Stack:</strong><span class="required-marker">*</span></label>
-                        <select id="tenantStack" name="tenantStack">
-                            <option value="" disabled selected>Select a value</option>
-                            <option value="NAM PRD">
-                                NAM PRD</option>
-                            <option value="NAM NPR">
-                                NAM NPR</option>
-                            <option value="CFN">
-                                CFN </option>
-                            <option value="EVAL">
-                                EVAL</option>
-                            <option value="APAC NPR/PRD">
-                                APAC NPR/PRD</option>
-                            <option value="CAN NPR/PRD">
-                                CAN NPR/PRD</option>
-                            <option value="EMEA NPR/PRD">
-                                EMEA NPR/PRD</option>
-                        </select>
-                        <br>
-                        <br>
+                        <div class="custom-select">
+                            <select id="tenantStack" name="tenantStack">
+                                <option value="" disabled selected>Select a value</option>
+                                <option value="NAM PRD">
+                                    NAM PRD</option>
+                                <option value="NAM NPR">
+                                    NAM NPR</option>
+                                <option value="CFN">
+                                    CFN </option>
+                                <option value="EVAL">
+                                    EVAL</option>
+                                <option value="APAC NPR/PRD">
+                                    APAC NPR/PRD</option>
+                                <option value="CAN NPR/PRD">
+                                    CAN NPR/PRD</option>
+                                <option value="EMEA NPR/PRD">
+                                    EMEA NPR/PRD</option>
+                            </select>
+                        </div>
                         <label><strong>Who is impacted by this issue?:</strong><span
                                 class="required-marker">*</span></label>
-                        <select id="impactedUsers" name="impactedUsers" onchange="showImpactedUserTextbox()">
-                            <option value="" disabled selected>Select a value</option>
-                            <option value="UKG Pro WFM Managers, or Administrators">
-                                UKG Pro WFM Managers or Administrators</option>
-                            <option value="UKG Pro WFM Timekeeper Employee(s)">
-                                UKG Pro WFM Employee(s)</option>
-                            <option value="Other">
-                                Other</option>
-                        </select>
+                        <div class="custom-select">
+                            <select id="impactedUsers" name="impactedUsers" onchange="showImpactedUserTextbox()">
+                                <option value="" disabled selected>Select a value</option>
+                                <option value="UKG Pro WFM Managers, or Administrators">
+                                    UKG Pro WFM Managers or Administrators</option>
+                                <option value="UKG Pro WFM Timekeeper Employee(s)">
+                                    UKG Pro WFM Employee(s)</option>
+                                <option value="Other">
+                                    Other</option>
+                            </select>
+                        </div>
                         <div id="impactedUsersTextboxContainer" style="display: none;"><br>
                             Specify User:<input type="text" id="impactedUserTextbox" name="impactedUserTextbox"
                                 required>
                             <br>
                         </div>
-                        <br>
-                        <br>
                         <label><strong>What range of users, employees, managers does the issue affect?:</strong><span
                                 class="required-marker">*</span></label>
+                                <div class="custom-select">
                         <select id="impactedUsersRange" name="impactedUsersRange">
                             <option value="" disabled selected>Select a value</option>
                             <option value="All users are affected">
@@ -164,11 +169,10 @@ Version 2.1 - Update to support formatting within HTML textboxs
                                 Some, but not all are affected</option>
                             <option value="Not Applicable">
                                 Not Applicable</option>
-                        </select>
-                        <br>
-                        <br>
+                        </select></div>
                         <label><strong>Is there a specific time or event that triggers the problem?:</strong><span
                                 class="required-marker">*</span></label>
+                                <div class="custom-select">
                         <select id="timeframeTrigger" name="timeframeTrigger">
                             <option value="" disabled selected>Select a value</option>
                             <option value="No, it is reproducible any time">
@@ -181,9 +185,7 @@ Version 2.1 - Update to support formatting within HTML textboxs
                                 Yes, a Daylight Saving Time change</option>
                             <option value="Yes, it is triggered by some OTHER event not listed">
                                 Yes, it is triggered by some OTHER event not listed</option>
-                        </select>
-                        <br>
-                        <br>
+                        </select></div>
                         <label><strong>What customers would be affected by this issue?:</strong><span
                                 class="required-marker">*</span></label>
                         <br>
@@ -198,6 +200,7 @@ Version 2.1 - Update to support formatting within HTML textboxs
                         <h3>C. Steps to Reproduce</h3>
                         <label><strong>What is the reproducibility for the issue?:</strong><span
                                 class="required-marker">*</span></label>
+                                <div class="custom-select">
                         <select id="reproducibility" name="reproducibility">
                             <option value="" disabled selected>Select a value</option>
                             <option
@@ -226,20 +229,16 @@ Version 2.1 - Update to support formatting within HTML textboxs
                                 tenant due to version
                                 differences
                             </option>
-                        </select>
+                        </select></div>
                         <h5>Please provide detail steps in a number format to reproduce the issue in the box below.
                             <span class="required-marker">*</span>
                         </h5>
                         <textarea id="reproductionSteps" name="reproductionSteps" rows="15" cols=75"></textarea>
-                        <br>
-                        <br>
                         <label><strong>Business Impact:</strong><span class="required-marker">*</span></label>
                         <textarea id="businessImpact" name="businessImpact" rows="10" cols=75"></textarea>
-                        <br>
                     </div>
                     <h2>Section III: Workaround</h2>
                     <div class="formSection" id="workaround">
-                        <br>
                         <label><strong>Is a workaround available?:</strong><span
                                 class="required-marker">*</span></label>
                         <br>
@@ -265,12 +264,11 @@ Version 2.1 - Update to support formatting within HTML textboxs
                                 <p>
                                     Mobile Device - Manufacturer, Model, and OS version:<input type="text"
                                         id="mobileDevice" name="mobileDevice" required>
-                                        <br>
+                                    <br>
                                     Mobile App - Name, Version:<input type="text" id="mobileApp" name="mobileApp"
                                         required>
-                                        <br>
-                                    Support Code:<input type="text" id="supportCode" name="supportCode"
-                                    required>
+                                    <br>
+                                    Support Code:<input type="text" id="supportCode" name="supportCode" required>
                             </div>
                             <div id="integrationComponent">
                                 <p>

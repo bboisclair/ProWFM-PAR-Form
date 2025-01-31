@@ -270,8 +270,6 @@ function showImpactedUserTextbox() {
 }
 
 function selectComponent(componentName, callback){
-  document.getElementById('selectedComponent').textContent = componentName;
-
   if (typeof callback === 'function') {
     callback();
 }

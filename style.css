@@ -1,325 +1,268 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    padding-top: 10px;
-    background-color: rgb(181, 181, 181)
-}
-
 header {
-    background-color: #005151;
-    color: hsl(0, 0%, 100%);
-    display: flex;
-    justify-content: center;
-    /* Center content horizontally */
-    border-radius: 40px;
-    margin: 20px;
-    margin-top: 10px;
+    background-color: #005151; /* Sets the background color of the header */
+    color: hsl(0, 0%, 100%); /* Sets the text color to white */
+    display: flex; /* Enables flexbox for layout */
+    justify-content: center; /* Centers content horizontally */
+    border-radius: 40px; /* Rounds the corners */
+    margin: 20px; /* Adds margin around the header */
+    margin-top: 10px; /* Adjusts the top margin */
 }
 
-p {
-    margin-top: 0px;
+body {
+    font-family: Arial, sans-serif; /* Sets the font style */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    padding-top: 10px; /* Adds padding at the top */
+    background-color: rgb(181, 181, 181); /* Sets background color of the page */
 }
 
-h1 {
-    margin-bottom: 10px;
+.top-menu {
+    display: flex; /* Enables flexbox layout */
+    justify-content: center; /* Centers menu items horizontally */
+    padding: 10px; /* Adds padding around the menu */
 }
 
-h5,h3 {
-    margin-top: 10px;
-    margin-bottom: 5px;
+.main {
+    display: flex; /* Enables flexbox layout */
+    align-items: flex-start; /* Aligns items at the top */
+    justify-content: space-between; /* Spaces items evenly */
+    padding: 20px; /* Adds padding */
+    box-sizing: border-box; /* Includes padding in width calculation */
+    gap: 20px; /* Adds space between sections */
+    width: 100%; /* Ensures full width */
+    overflow-x: auto; /* Allows horizontal scrolling if needed */
 }
 
-.notice ol {
-    list-style-type: decimal;
-    padding-left: 20px;
-    text-align: left;
-}
-
-
-.main-section {
-    display: flex; /* Enable flexbox layout */
-    align-items: flex-start; /* Align items to the top */
-    justify-content: space-between; /* Ensure proper spacing */
-    padding: 20px;
-    box-sizing: border-box;
-    gap: 20px; /* Space between the sections */
-    width: 100%;
-    overflow-x: auto; /* Prevent content from collapsing on smaller screens */
-}
-
-/* Left section styling */
-.left-section {
-    width: 300px; /* Fixed width for the left section */
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    background-color: #fff;
-}
-
-/* Right section styling */
-.right-section {
-    flex-grow: 1; /* The right section takes the remaining space */
-    width: calc(100% - 320px); /* Adjust based on the left section's width */
-    min-width: 500px; /* Prevent it from collapsing too much */
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    background-color: #fff;
-}
-
-.left-section h2 {
-    padding-top: 10px;
-    margin-top: 0px;
-    text-align: center;
-}
-
-.left-section p {
-    padding-left: 10px;
-    padding-right: 10px;
-    text-align: center;
-}
-
-.left-section ul {
-    padding-left: 0px;
-}
-
-.right-section {
-    flex: 3;
-    padding: 20px;
-    background-color: #fff;
-    padding-top: 0px;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 2.0);
-    /*margin-left: 325px; Uncomment this line if you want to enable the floating container */
+.main-form {
+    flex: 3; /* Allows flexible growth */
+    padding: 20px; /* Adds padding */
+    background-color: #fff; /* Sets background to white */
+    padding-top: 0px; /* Removes extra padding at the top */
+    padding-bottom: 0px; /* Removes extra padding at the bottom */
+    border-radius: 10px; /* Rounds the corners */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 2.0); /* Adds shadow effect */
 }
 
 .header-icon {
-    height: 50px;
-    width: 50px;
-    padding: 10px;
+    height: 50px; /* Sets height */
+    width: 50px; /* Sets width */
+    padding: 10px; /* Adds padding */
 }
 
 #outputForm {
-    background-color: #fff;
-    /* White background for the form */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
-    margin: 0 auto;
+    background-color: #fff; /* Sets white background */
+    padding: 20px; /* Adds padding */
+    border-radius: 8px; /* Rounds the corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adds a light shadow */
+    max-width: 100%; /* Prevents overflow */
+    margin: 0 auto; /* Centers the form */
 }
 
 #outputContainer {
-    margin: 20px;
-    /* Add some space between the header and the form */
+    margin: 20px; /* Adds spacing */
 }
 
 .formSection {
-    border: 2px solid rgba(0, 0, 0, 0.5);
-    /* Border to separate sections */
-    border-radius: 5px;
-    padding: 10px;
-    /* Padding for better appearance */
+    border: 2px solid rgba(0, 0, 0, 0.5); /* Adds a border */
+    border-radius: 5px; /* Rounds the corners */
+    padding: 10px; /* Adds padding */
 }
 
 .buttonSection {
-    border: 0px solid #000000;
-    /* Border to separate sections */
-    padding: 10px;
-    /* Padding for better appearance */
-    margin-bottom: 20px;
-    /* Space between sections */
+    border: 0px solid #000000; /* No visible border */
+    padding: 10px; /* Adds padding */
 }
 
 label[type='text'] {
-    display: block;
-    margin-bottom: 8px;
+    display: block; /* Makes label a block element */
+    margin-bottom: 8px; /* Adds spacing below label */
 }
 
 input[type='text'] {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    border: 1px solid #ccc;
-    padding: 10px;
-    height: 40px; /* Set a fixed height */
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    margin-bottom: 6px;
+    width: 100%; /* Makes input take full width */
+    max-width: 100%; /* Ensures it doesn’t overflow */
+    box-sizing: border-box; /* Includes padding in width calculation */
+    font-family: Arial, sans-serif; /* Sets font style */
+    border: 1px solid #ccc; /* Adds a border */
+    padding: 10px; /* Adds padding */
+    height: 40px; /* Sets input height */
+    border-radius: 8px; /* Rounds the corners */
+    background-color: #f9f9f9; /* Sets background color */
+    margin-bottom: 6px; /* Adds spacing */
+}
+
+.button-container {
+    flex-wrap: wrap; /* Allows wrapping of buttons */
+    gap: 10px; /* Adds spacing */
+    padding: 5px; /* Adds padding */
+    justify-content: center; /* Centers buttons */
 }
 
 button {
-    background-color: #005151;
-    /* UKG Blue */
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    margin: 10px auto;
-    /* Center the button */
-    padding: 10px;
-    /* Adjust padding for larger size */
-    font-size: 16px;
-    /* Adjust font size for larger text */
-    width: 300px;
-    /* Adjust the width as needed */
+    background-color: #005151; /* Sets button background */
+    color: #fff; /* Sets text color */
+    padding: 10px 15px; /* Adds padding */
+    border: none; /* Removes border */
+    border-radius: 4px; /* Rounds corners */
+    cursor: pointer; /* Changes cursor on hover */
+    display: block; /* Makes button a block element */
+    margin: 10px auto; /* Centers the button */
+    font-size: 16px; /* Sets font size */
+    width: 300px; /* Sets button width */
 }
 
 .menuButton {
-    background: #005151;
-    color: #fff;
-    border: none;
-    position: relative;
-    height: 60px;
-    font-size: 1.2em;
-    padding: 0 2em;
-    cursor: pointer;
-    transition: 800ms ease all;
-    outline: none;
+    background: #005151; /* Sets background color */
+    color: #fff; /* Sets text color */
+    border: none; /* Removes border */
+    position: relative; /* Allows absolute positioning of pseudo-elements */
+    height: 60px; /* Sets button height */
+    cursor: pointer; /* Changes cursor on hover */
+    transition: 800ms ease all; /* Smooth transitions */
+    outline: none; /* Removes outline */
+    flex-grow: 1; /* Allows buttons to grow flexibly */
+    min-width: 120px; /* Sets minimum width */
+    max-width: 300px; /* Sets maximum width */
+    margin: 10px; /* Adds margin */
+    font-size: clamp(12px, 2vw, 16px); /* Responsive font size */
 }
 
 .menuButton:hover {
-    background: #fff;
-    color: #005151;
-}
-
-.menuButton:before,
-button:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 2px;
-    width: 0;
-    background: #005151;
-    transition: 400ms ease all;
-}
-
-.menuButton:after {
-    right: inherit;
-    top: inherit;
-    left: 0;
-    bottom: 0;
-
-}
-
-.menuButton:hover:before,
-button:hover:after {
-    width: 100%;
-    transition: 800ms ease all;
+    background: #fff; /* Changes background on hover */
+    color: #005151; /* Changes text color on hover */
 }
 
 @media (min-width: 768px) {
     .button-65 {
-        padding: 14px 22px;
-        width: 176px;
+        padding: 14px 22px; /* Adjusts padding for larger screens */
+        width: 176px; /* Sets button width */
     }
 }
 
-#output {
-    margin-top: 20px;
-}
-
 textarea {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    border: 1px solid #ccc;
-    padding: 10px;
-    min-height: 200px;
-    overflow: auto;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    resize: vertical;
+    width: 100%; /* Full width */
+    max-width: 100%; /* Prevents overflow */
+    box-sizing: border-box; /* Includes padding in width calculation */
+    font-family: Arial, sans-serif; /* Sets font */
+    border: 1px solid #ccc; /* Adds border */
+    padding: 10px; /* Adds padding */
+    min-height: 200px; /* Sets minimum height */
+    overflow: auto; /* Enables scrolling */
+    border-radius: 8px; /* Rounds corners */
+    background-color: #f9f9f9; /* Sets background color */
+    resize: vertical; /* Allows vertical resizing */
 }
 
+/* Visually hides elements but keeps them accessible for screen readers */
 .visually-hidden {
-    border: 0;
-    padding: 0;
-    margin: 0;
-    position: absolute !important;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    clip: rect(1px 1px 1px 1px);
-    /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-    clip: rect(1px, 1px, 1px, 1px);
-    /*maybe deprecated but we need to support legacy browsers */
-    clip-path: inset(50%);
-    /*modern browsers, clip-path works inwards from each corner*/
-    white-space: nowrap;
-    /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+    border: 0; /* Removes any borders */
+    padding: 0; /* Removes any padding */
+    margin: 0; /* Removes any margins */
+    position: absolute !important; /* Absolutely positions the element and ensures it stays hidden */
+    height: 1px; /* Sets the height to 1 pixel */
+    width: 1px; /* Sets the width to 1 pixel */
+    overflow: hidden; /* Prevents content from being displayed */
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 support - clips the element to an invisible box */
+    clip: rect(1px, 1px, 1px, 1px); /* Legacy browser support */
+    clip-path: inset(50%); /* Modern browser support - hides content */
+    white-space: nowrap; /* Prevents words from breaking into multiple lines */
 }
 
+/* Styles the required field marker */
 .required-marker {
-    color: red;
-    margin-left: 4px;
-    /* Adjust the margin as needed */
+    color: red; /* Sets the text color to red */
+    margin-left: 4px; /* Adds spacing to the left of the marker */
 }
 
-#componentSectionFormContainer{
-    display: none;
+/* Hides the component section form container */
+#componentSectionFormContainer {
+    display: none; /* Prevents the container from being displayed */
 }
 
+/* Hides the mobile app component */
 #mobileAppComponent {
-    display: none;
+    display: none; /* Prevents the component from being displayed */
 }
 
-#integrationComponent{
-    display: none;
+/* Hides the integration component */
+#integrationComponent {
+    display: none; /* Prevents the component from being displayed */
 }
 
-#integrationTextboxContainer{
-    display: none;
+/* Hides the integration textbox container */
+#integrationTextboxContainer {
+    display: none; /* Prevents the textbox container from being displayed */
 }
 
+/* Custom styling for select dropdowns */
 .custom-select {
-    width: 100%; /* Makes the select box take up full width of its container */
-    max-width: 100%; /* Prevent overflow beyond the container */
-    position: relative;
-    box-sizing: border-box;
+    width: 100%; /* Ensures the dropdown spans the full width */
+    max-width: 100%; /* Prevents the dropdown from exceeding the parent width */
+    position: relative; /* Positions relative for absolute child elements */
+    box-sizing: border-box; /* Ensures padding and border are included in the width calculation */
 }
 
+/* Styles the select dropdown */
 .custom-select select {
-    appearance: none;
-    width: 100%; /* Makes the select element take up full width of its container */
-    font-size: 1.15rem;
-    padding: 0.675em 2.5em 0.675em 1em;
-    background-color: #fff;
-    border: 1px solid #caced1;
-    border-radius: 0.25rem;
-    color: #000;
-    cursor: pointer;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
+    appearance: none; /* Removes default OS styling */
+    width: 100%; /* Ensures the dropdown spans the full width */
+    font-size: 1.15rem; /* Sets the font size */
+    padding: 0.675em 2.5em 0.675em 1em; /* Adds padding around the text */
+    background-color: #fff; /* Sets the background color to white */
+    border: 1px solid #caced1; /* Adds a border with a subtle color */
+    border-radius: 0.25rem; /* Rounds the corners slightly */
+    color: #000; /* Sets the text color to black */
+    cursor: pointer; /* Changes the cursor to indicate interactivity */
+    margin-top: 5px; /* Adds spacing above the dropdown */
+    margin-bottom: 10px; /* Adds spacing below the dropdown */
+    box-sizing: border-box; /* Ensures padding and border are included in the width calculation */
 }
 
+/* Adds custom arrow indicators to the select dropdown */
 .custom-select::before,
 .custom-select::after {
-    --size: 0.4rem; /* Adjust arrow size */
-    content: "";
-    position: absolute;
-    right: 1rem; /* Align the arrows to the right of the select box */
-    pointer-events: none;
+    --size: 0.4rem; /* Defines the size of the arrows */
+    content: ""; /* Creates empty content for the arrows */
+    position: absolute; /* Positions the arrows absolutely within the container */
+    right: 1rem; /* Aligns the arrows to the right of the select box */
+    pointer-events: none; /* Prevents the arrows from interfering with clicks */
 }
 
+/* Top arrow for dropdown */
 .custom-select::before {
-    border-left: var(--size) solid transparent;
-    border-right: var(--size) solid transparent;
-    border-bottom: var(--size) solid black;
-    top: 30%; /* Center the arrow vertically */
+    border-left: var(--size) solid transparent; /* Creates left border for arrow shape */
+    border-right: var(--size) solid transparent; /* Creates right border for arrow shape */
+    border-bottom: var(--size) solid black; /* Creates bottom border for arrow shape */
+    top: 30%; /* Positions the top arrow slightly above center */
 }
 
+/* Bottom arrow for dropdown */
 .custom-select::after {
-    border-left: var(--size) solid transparent;
-    border-right: var(--size) solid transparent;
-    border-top: var(--size) solid black;
-    top: 45%; /* Center the second arrow vertically */
+    border-left: var(--size) solid transparent; /* Creates left border for arrow shape */
+    border-right: var(--size) solid transparent; /* Creates right border for arrow shape */
+    border-top: var(--size) solid black; /* Creates top border for arrow shape */
+    top: 45%; /* Positions the bottom arrow slightly below center */
 }
 
+/* Adjusts paragraph spacing */
+p {
+    margin-top: 0px; /* Removes top margin */
+}
+
+/* Adjusts heading 1 spacing */
+h1 {
+    margin-bottom: 10px; /* Adds space below the heading */
+}
+
+/* Adjusts spacing for h3 and h5 headings */
+h5, h3 {
+    margin-top: 10px; /* Adds space above the headings */
+    margin-bottom: 5px; /* Adds space below the headings */
+}
+
+option {
+    font-size: 16px;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 5px;
+  }

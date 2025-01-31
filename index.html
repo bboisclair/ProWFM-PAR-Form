@@ -35,27 +35,21 @@ Version 3.0 - Minor Design Update
         <h1> PAR Generator for Pro WFM </h1>
         <img src="defect_white.png" class="header-icon" title="Defect Icon">
     </header>
-
+    <!-- Navigation Menu -->
+    <div class="button-container">
+        <nav class="top-menu">
+            <button
+                onclick="selectComponent('Standard PAR', hideComponentSectionFormContainer); changeBackgroundColor(this)"
+                class="menuButton" role="button">Standard PAR</button>
+            <button onclick="selectComponent('Integrations', toggleIntegrationComponent); changeBackgroundColor(this)"
+                class="menuButton" role="button">Integrations</button>
+            <button onclick="selectComponent('Mobile', toggleMobileAppComponent); changeBackgroundColor(this)"
+                class="menuButton" role="button">Mobile</button>
+        </nav>
+    </div>
     <!-- Main Content Section -->
-    <div class="main-section">
-        <div class="left-section">
-            <h2>Component Selection</h2>
-            <p>Please select the appropriate component</p>
-            <!-- Hyperlinks -->
-            <ul>
-                <button
-                    onclick="selectComponent('Standard PAR', hideComponentSectionFormContainer); changeBackgroundColor(this)"
-                    class="menuButton" role="button">Standard PAR</button>
-                <button
-                    onclick="selectComponent('Integrations', toggleIntegrationComponent); changeBackgroundColor(this)"
-                    class="menuButton" role="button">Integrations</button>
-                <button onclick="selectComponent('Mobile', toggleMobileAppComponent); changeBackgroundColor(this)"
-                    class="menuButton" role="button">Mobile</button>
-            </ul>
-            <p>Currently Selected: <span id="selectedComponent">Standard PAR</span></p>
-        </div>
-        <!-- Right Section (Form) -->
-        <div class="right-section">
+    <div class="main">
+        <div class="main-form">
             <div id="formContainer">
                 <form id="myForm">
                     <h2>Section I: Issue Summary</h2>
@@ -72,37 +66,14 @@ Version 3.0 - Minor Design Update
                             <select id="prevWorked" name="prevWorked">
                                 <option value="">Select a value</option>
                                 <option
-                                    value="Yes, but while there is reasonable proof or a creditable claim that this previously worked, there are no clues reported or discovered to more clearly define what started the issue, so Global Support is reporting the origin as 'uncertain'">
-                                    Yes, but while there is reasonable proof or a creditable claim that this previously
-                                    worked, there are no
-                                    clues reported or discovered to more clearly define what started the issue, so
-                                    Global
-                                    Support is reporting
-                                    the origin as 'uncertain'</option>
-                                <option
-                                    value="Yes, this was working, and Global Support has proven that this is a regression introduced by a regular release or update. JIRA's 'Regression Yes/No' and 'Regression Introduced' fields will be set to reflect Global Support's findings">
-                                    Yes, this was working, and Global Support has proven that this is a regression
-                                    introduced by a regular
-                                    release or update. JIRA's 'Regression Yes/No' and 'Regression Introduced' fields
-                                    will be
-                                    set to reflect
-                                    Global Support's findings</option>
-                                <option
-                                    value="Yes, this was working, and Global Support has proven that this is a regression introduced by an Express Upgrade or a Patch">
-                                    Yes, this was working, and Global Support has proven that this is a regression
-                                    introduced by an Express
-                                    Upgrade or a Patch</option>
-                                <option
-                                    value="Yes, this was working as expected, but we have determined with some certainty that it started after some OTHER event or change">
-                                    Yes, this was working as expected, but we have determined with some certainty that
-                                    it
-                                    started after some
-                                    OTHER event or change</option>
+                                    value="Yes, but while there is reasonable proof that this previously worked, there is nothing to clearly define what started the issue">
+                                    Yes, but while there is reasonable proof that this previously worked, there is
+                                    nothing to clearly define what started the issue</option>
+                                <option value="Yes, this was working and stopped after a recent release">
+                                    Yes, this was working and stopped after a recent release</option>
                                 <option
                                     value="No, this has not worked since originally set up and configured by UKG Professional Services, Partner, or by the customer">
-                                    No, this has not worked since originally set up and configured by UKG Professional
-                                    Services, Partner, or by
-                                    the customer</option>
+                                    No, this has not worked since originally set up and configured by UKG Professional Services, Partner or the customer</option>
                             </select>
                         </div>
                         <label><strong>Problem:</strong><span class="required-marker">*</span></label>
@@ -158,34 +129,36 @@ Version 3.0 - Minor Design Update
                         </div>
                         <label><strong>What range of users, employees, managers does the issue affect?:</strong><span
                                 class="required-marker">*</span></label>
-                                <div class="custom-select">
-                        <select id="impactedUsersRange" name="impactedUsersRange">
-                            <option value="" disabled selected>Select a value</option>
-                            <option value="All users are affected">
-                                All users are affected</option>
-                            <option value="Only one user is affected">
-                                Only one is affected</option>
-                            <option value="Some users, but not all are affected">
-                                Some, but not all are affected</option>
-                            <option value="Not Applicable">
-                                Not Applicable</option>
-                        </select></div>
+                        <div class="custom-select">
+                            <select id="impactedUsersRange" name="impactedUsersRange">
+                                <option value="" disabled selected>Select a value</option>
+                                <option value="All users are affected">
+                                    All users are affected</option>
+                                <option value="Only one user is affected">
+                                    Only one is affected</option>
+                                <option value="Some users, but not all are affected">
+                                    Some, but not all are affected</option>
+                                <option value="Not Applicable">
+                                    Not Applicable</option>
+                            </select>
+                        </div>
                         <label><strong>Is there a specific time or event that triggers the problem?:</strong><span
                                 class="required-marker">*</span></label>
-                                <div class="custom-select">
-                        <select id="timeframeTrigger" name="timeframeTrigger">
-                            <option value="" disabled selected>Select a value</option>
-                            <option value="No, it is reproducible any time">
-                                No, it is reproducible any time</option>
-                            <option value="No, it occurs intermittently">
-                                No, it occurs intermittently</option>
-                            <option value="Yes, payroll processing days">
-                                Yes, payroll processing days</option>
-                            <option value="Yes, a Daylight Saving Time change">
-                                Yes, a Daylight Saving Time change</option>
-                            <option value="Yes, it is triggered by some OTHER event not listed">
-                                Yes, it is triggered by some OTHER event not listed</option>
-                        </select></div>
+                        <div class="custom-select">
+                            <select id="timeframeTrigger" name="timeframeTrigger">
+                                <option value="" disabled selected>Select a value</option>
+                                <option value="No, it is reproducible any time">
+                                    No, it is reproducible any time</option>
+                                <option value="No, it occurs intermittently">
+                                    No, it occurs intermittently</option>
+                                <option value="Yes, payroll processing days">
+                                    Yes, payroll processing days</option>
+                                <option value="Yes, a Daylight Saving Time change">
+                                    Yes, a Daylight Saving Time change</option>
+                                <option value="Yes, it is triggered by some OTHER event not listed">
+                                    Yes, it is triggered by some OTHER event not listed</option>
+                            </select>
+                        </div>
                         <label><strong>What customers would be affected by this issue?:</strong><span
                                 class="required-marker">*</span></label>
                         <br>
@@ -200,36 +173,40 @@ Version 3.0 - Minor Design Update
                         <h3>C. Steps to Reproduce</h3>
                         <label><strong>What is the reproducibility for the issue?:</strong><span
                                 class="required-marker">*</span></label>
-                                <div class="custom-select">
-                        <select id="reproducibility" name="reproducibility">
-                            <option value="" disabled selected>Select a value</option>
-                            <option
-                                value="The problem was reported by a customer, but can be reproduced in any CFN tenant">
-                                The problem was reported by a customer, but can be reproduced in any CFN tenant
-                            </option>
-                            <option
-                                value="The problem was reported by a customer, but cannot be reproduced in any other tenant">
-                                The problem was reported by a customer, but cannot be reproduced in any other tenant
-                            </option>
-                            <option
-                                value="The problem was reported on a CFN tenant, but can also be reproduced in any CFN tenant">
-                                The problem was reported on a CFN tenant, but can also be reproduced in any CFN tenant
-                            </option>
-                            <option
-                                value="The problem was reported on a CFN tenant, but cannot be reproduced on any other tenant">
-                                The problem was reported on a CFN tenant, but cannot be reproduced on any other tenant
-                            </option>
-                            <option
-                                value="The problem was reported on a NXT or EVL tenant, but can also be reproduced in any CFN tenant">
-                                The problem was reported on a NXT or EVL tenant, but can also be reproduced in any CFN
-                                tenant</option>
-                            <option
-                                value="The problem was reported on a NXT or EVL tenant, but cannot be reproduced on a CFN tenant due to version differences">
-                                The problem was reported on a NXT or EVL tenant, but cannot be reproduced on a CFN
-                                tenant due to version
-                                differences
-                            </option>
-                        </select></div>
+                        <div class="custom-select">
+                            <select id="reproducibility" name="reproducibility">
+                                <option value="" disabled selected>Select a value</option>
+                                <option
+                                    value="The problem was reported by a customer, but can be reproduced in any CFN tenant">
+                                    The problem was reported by a customer, but can be reproduced in any CFN tenant
+                                </option>
+                                <option
+                                    value="The problem was reported by a customer, but cannot be reproduced in any other tenant">
+                                    The problem was reported by a customer, but cannot be reproduced in any other tenant
+                                </option>
+                                <option
+                                    value="The problem was reported on a CFN tenant, but can also be reproduced in any CFN tenant">
+                                    The problem was reported on a CFN tenant, but can also be reproduced in any CFN
+                                    tenant
+                                </option>
+                                <option
+                                    value="The problem was reported on a CFN tenant, but cannot be reproduced on any other tenant">
+                                    The problem was reported on a CFN tenant, but cannot be reproduced on any other
+                                    tenant
+                                </option>
+                                <option
+                                    value="The problem was reported on a NXT or EVL tenant, but can also be reproduced in any CFN tenant">
+                                    The problem was reported on a NXT or EVL tenant, but can also be reproduced in any
+                                    CFN
+                                    tenant</option>
+                                <option
+                                    value="The problem was reported on a NXT or EVL tenant, but cannot be reproduced on a CFN tenant due to version differences">
+                                    The problem was reported on a NXT or EVL tenant, but cannot be reproduced on a CFN
+                                    tenant due to version
+                                    differences
+                                </option>
+                            </select>
+                        </div>
                         <h5>Please provide detail steps in a number format to reproduce the issue in the box below.
                             <span class="required-marker">*</span>
                         </h5>

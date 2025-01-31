@@ -6,6 +6,7 @@ header {
     border-radius: 40px; /* Rounds the corners */
     margin: 20px; /* Adds margin around the header */
     margin-top: 10px; /* Adjusts the top margin */
+    margin-bottom: 0px; /* Removes default margin */
 }
 
 body {
@@ -27,6 +28,7 @@ body {
     align-items: flex-start; /* Aligns items at the top */
     justify-content: space-between; /* Spaces items evenly */
     padding: 20px; /* Adds padding */
+    padding-top: 0px; /* Removes padding */
     box-sizing: border-box; /* Includes padding in width calculation */
     gap: 20px; /* Adds space between sections */
     width: 100%; /* Ensures full width */
@@ -116,7 +118,7 @@ button {
     color: #fff; /* Sets text color */
     border: none; /* Removes border */
     position: relative; /* Allows absolute positioning of pseudo-elements */
-    height: 60px; /* Sets button height */
+    height: 40px; /* Sets button height */
     cursor: pointer; /* Changes cursor on hover */
     transition: 800ms ease all; /* Smooth transitions */
     outline: none; /* Removes outline */
